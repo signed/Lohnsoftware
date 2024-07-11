@@ -1,7 +1,5 @@
 package example.lohnsoftware.core;
 
-import java.time.Year;
-
 public class ZeiterfassungImporter {
 
     private final Zeiterfassung zeiterfassung;
@@ -17,10 +15,11 @@ public class ZeiterfassungImporter {
     }
 
     public void importiereArbeitsstunden() {
-        final var mitarbeiter = this.belegschaft.alleMitarbeiter().iterator().next();
-        final var heute = this.uhr.heute();
+        final var month = LocalMonth.from(this.uhr.heute());
+        this.belegschaft.alleMitarbeiter().forEach(mitarbeiter -> importiereArbeitsstundenFür(mitarbeiter, month));
+    }
 
-        final var month = LocalMonth.from(heute);
+    private void importiereArbeitsstundenFür(Mitarbeiter mitarbeiter, LocalMonth month) {
         final var arbeitsstunden = this.zeiterfassung.arbeitsstundenFür(mitarbeiter, month);
         this.lohnsoftware.schreibeArbeitsstundenFÜr(mitarbeiter, month, arbeitsstunden);
     }

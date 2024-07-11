@@ -2,32 +2,36 @@ package example.lohnsoftware.core;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
 import static example.lohnsoftware.core.LocalDateMother.anyDateInSameMonthBefore;
 import static example.lohnsoftware.core.LocalDateMother.lastLocalDateOfAnyMonth;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class ZeiterfassungImporterTest {
 
+    private final LocalDate heute = lastLocalDateOfAnyMonth();
+    private final FixeUhr uhr = new FixeUhr(heute);
+    private final LocalMonth month = LocalMonth.from(heute);
+    private final LohnsoftwareFake lohnsoftware = new LohnsoftwareFake();
+    private final ZeiterfassungFake zeiterfassung = new ZeiterfassungFake();
+    private final BelegschaftFake belegschaft = new BelegschaftFake();
+
     @Test
     void übertrageDieImAktuellenMonatGearbeitetenStundenInDieLohnverarbeitung() {
-        final var heute = lastLocalDateOfAnyMonth();
-        final var month = LocalMonth.from(heute);
-        final var uhr = new FixeUhr(heute);
-        final var lohnsoftware = new LohnsoftwareFake();
-        final var zeiterfassung = new ZeiterfassungFake();
-        final var belegschaft = new BelegschaftFake();
+        final var mitarbeiterEins = new Mitarbeiter("mitarbeiter eins");
+        final var mitarbeiterZwei = new Mitarbeiter("mitarbeiter zwei");
 
-        final var mitarbeiter = new Mitarbeiter("mitarbeiter eins");
 
-        belegschaft.einstellen(mitarbeiter);
-        zeiterfassung.arbeitet(mitarbeiter, anyDateInSameMonthBefore(heute), Arbeitsstunden.Dauer(8, 42));
-
+        belegschaft.einstellen(mitarbeiterEins, mitarbeiterZwei);
+        zeiterfassung.arbeitet(mitarbeiterEins, anyDateInSameMonthBefore(heute), Arbeitsstunden.Dauer(8, 42));
+        zeiterfassung.arbeitet(mitarbeiterZwei, anyDateInSameMonthBefore(heute), Arbeitsstunden.Dauer(4, 9));
 
         final var importer = new ZeiterfassungImporter(zeiterfassung, lohnsoftware, belegschaft, uhr);
         importer.importiereArbeitsstunden();
 
-        assertThat(lohnsoftware.gearbeiteteStunden(mitarbeiter, month)).isEqualTo(Arbeitsstunden.Dauer(8, 42));
+        assertThat(lohnsoftware.gearbeiteteStunden(mitarbeiterEins, month)).isEqualTo(Arbeitsstunden.Dauer(8, 42));
+        assertThat(lohnsoftware.gearbeiteteStunden(mitarbeiterZwei, month)).isEqualTo(Arbeitsstunden.Dauer(4, 9));
     }
-
 
 }
