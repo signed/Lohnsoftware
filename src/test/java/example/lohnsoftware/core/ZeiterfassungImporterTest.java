@@ -22,16 +22,15 @@ class ZeiterfassungImporterTest {
         final var mitarbeiterEins = new Mitarbeiter("mitarbeiter eins");
         final var mitarbeiterZwei = new Mitarbeiter("mitarbeiter zwei");
 
-
         belegschaft.einstellen(mitarbeiterEins, mitarbeiterZwei);
-        zeiterfassung.arbeitet(mitarbeiterEins, anyDateInSameMonthBefore(heute), Arbeitsstunden.Dauer(8, 42));
-        zeiterfassung.arbeitet(mitarbeiterZwei, anyDateInSameMonthBefore(heute), Arbeitsstunden.Dauer(4, 9));
+        zeiterfassung.arbeitet(mitarbeiterEins, anyDateInSameMonthBefore(heute), Arbeitsstunden.Erstelle(8, 42));
+        zeiterfassung.arbeitet(mitarbeiterZwei, anyDateInSameMonthBefore(heute), Arbeitsstunden.Erstelle(4, 9));
 
         final var importer = new ZeiterfassungImporter(zeiterfassung, lohnsoftware, belegschaft, uhr);
         importer.importiereArbeitsstunden();
 
-        assertThat(lohnsoftware.gearbeiteteStunden(mitarbeiterEins, month)).isEqualTo(Arbeitsstunden.Dauer(8, 42));
-        assertThat(lohnsoftware.gearbeiteteStunden(mitarbeiterZwei, month)).isEqualTo(Arbeitsstunden.Dauer(4, 9));
+        assertThat(lohnsoftware.gearbeiteteStunden(mitarbeiterEins, month)).isEqualTo(Arbeitsstunden.Erstelle(8, 42));
+        assertThat(lohnsoftware.gearbeiteteStunden(mitarbeiterZwei, month)).isEqualTo(Arbeitsstunden.Erstelle(4, 9));
     }
 
 }

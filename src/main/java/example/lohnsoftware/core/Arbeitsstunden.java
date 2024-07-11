@@ -6,13 +6,10 @@ public record Arbeitsstunden(Stunden stunden, Minuten minuten) {
         return new Arbeitsstunden(new Stunden(0), new Minuten(0));
     }
 
-    public static Arbeitsstunden Dauer(int stunden, int minuten) {
-        final var h = Stunden.Erstelle(stunden);
-        final var m = Minuten.Erstelle(minuten);
-        if (h.isEmpty() || m.isEmpty()) {
-            throw new RuntimeException("Keine Arbeitsstunden");
-        }
-        return new Arbeitsstunden(h.get(), m.get());
+    public static Arbeitsstunden Erstelle(int stundenWert, int minutenWert) {
+        final var stunden = Stunden.Erstelle(stundenWert);
+        final var minuten = Minuten.Erstelle(minutenWert);
+        return new Arbeitsstunden(stunden, minuten);
     }
 
 }
