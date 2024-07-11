@@ -20,10 +20,9 @@ public class ZeiterfassungImporter {
         final var mitarbeiter = this.belegschaft.alleMitarbeiter().iterator().next();
         final var heute = this.uhr.heute();
 
-        final var year = Year.from(heute);
-        final var month = heute.getMonth();
-        final var arbeitsstunden = this.zeiterfassung.arbeitsstundenFür(mitarbeiter, LocalMonth.from(heute));
-        this.lohnsoftware.schreibeArbeitsstundenFÜr(mitarbeiter, year, month, arbeitsstunden);
+        final var month = LocalMonth.from(heute);
+        final var arbeitsstunden = this.zeiterfassung.arbeitsstundenFür(mitarbeiter, month);
+        this.lohnsoftware.schreibeArbeitsstundenFÜr(mitarbeiter, month, arbeitsstunden);
     }
 
 }

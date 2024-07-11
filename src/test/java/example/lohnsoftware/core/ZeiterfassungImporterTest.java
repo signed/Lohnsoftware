@@ -12,11 +12,7 @@ class ZeiterfassungImporterTest {
 
     @Test
     void übertrageDieImAktuellenMonatGearbeitetenStundenInDieLohnverarbeitung() {
-        final var aktuellerMonat = Month.AUGUST;
-
-        final var year = Year.of(2024);
-
-        final var heute = LocalDate.of(2024, aktuellerMonat, 12);
+        final var heute = LocalDate.of(2024, Month.AUGUST, 12);
         final var month = LocalMonth.from(heute);
         final var uhr = new FixeUhr(heute);
         final var lohnsoftware = new LohnsoftwareFake();

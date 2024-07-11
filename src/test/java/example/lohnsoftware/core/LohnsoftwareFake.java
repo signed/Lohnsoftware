@@ -1,7 +1,5 @@
 package example.lohnsoftware.core;
 
-import java.time.Month;
-import java.time.Year;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -19,7 +17,7 @@ public class LohnsoftwareFake implements Lohnsoftware {
     }
 
     @Override
-    public void schreibeArbeitsstundenFÜr(Mitarbeiter mitarbeiter, Year year, Month month, Arbeitsstunden arbeitsstunden) {
-        map.put(new Key(mitarbeiter, new LocalMonth(year, month)), arbeitsstunden);
+    public void schreibeArbeitsstundenFÜr(Mitarbeiter mitarbeiter, LocalMonth month, Arbeitsstunden arbeitsstunden) {
+        map.put(new Key(mitarbeiter, month), arbeitsstunden);
     }
 }
