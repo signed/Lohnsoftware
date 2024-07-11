@@ -11,7 +11,6 @@ public class FixeUhr implements Uhr {
 
     @Override
     public LocalDate heute() {
-
         return fix;
     }
 }
