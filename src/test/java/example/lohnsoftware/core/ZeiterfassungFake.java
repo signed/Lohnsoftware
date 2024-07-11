@@ -8,14 +8,14 @@ import java.util.Map;
 
 public class ZeiterfassungFake implements Zeiterfassung {
 
-    private record Key(Mitarbeiter mitarbeiter, Year year, Month month) {
+    private record Key(Mitarbeiter mitarbeiter, LocalMonth month) {
     }
 
     private final Map<Key, Arbeitsstunden> arbeitsstunden = new HashMap<>();
 
     @Override
-    public Arbeitsstunden arbeitsstundenFür(Mitarbeiter mitarbeiter, Year year, Month month) {
-        final var arbeitsstunden = this.arbeitsstunden.get(new Key(mitarbeiter, year, month));
+    public Arbeitsstunden arbeitsstundenFür(Mitarbeiter mitarbeiter, LocalMonth month) {
+        final var arbeitsstunden = this.arbeitsstunden.get(new Key(mitarbeiter,month));
         if (arbeitsstunden == null) {
             return Arbeitsstunden.KeineArbeitsstunden();
         }
@@ -23,6 +23,7 @@ public class ZeiterfassungFake implements Zeiterfassung {
     }
 
     public void arbeitet(Mitarbeiter mitarbeiter, LocalDate date, Arbeitsstunden dauer) {
-        this.arbeitsstunden.put(new Key(mitarbeiter, Year.from(date), Month.from(date)), dauer);
+        final var month = new LocalMonth(Year.from(date), Month.from(date));
+        this.arbeitsstunden.put(new Key(mitarbeiter, month), dauer);
     }
 }

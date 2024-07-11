@@ -22,7 +22,7 @@ public class ZeiterfassungImporter {
 
         final var year = Year.from(heute);
         final var month = heute.getMonth();
-        final var arbeitsstunden = this.zeiterfassung.arbeitsstundenFür(mitarbeiter, year, month);
+        final var arbeitsstunden = this.zeiterfassung.arbeitsstundenFür(mitarbeiter, LocalMonth.from(heute));
         this.lohnsoftware.schreibeArbeitsstundenFÜr(mitarbeiter, year, month, arbeitsstunden);
     }
 
