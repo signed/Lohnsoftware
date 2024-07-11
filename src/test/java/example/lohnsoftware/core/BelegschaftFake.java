@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Stream;
 
 public class BelegschaftFake implements Belegschaft {
     private final HashSet<Mitarbeiter> alleMitarbeitenden = new HashSet<Mitarbeiter>();
