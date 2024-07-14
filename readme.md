@@ -7,4 +7,3 @@
 # Ideen
 
 - Arbeitszeitkonto
-- Command AktualisierMonatsarbeitsstunden
