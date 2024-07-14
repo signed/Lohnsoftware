@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: Lohnsoftware
+  main:
+    banner-mode: off
