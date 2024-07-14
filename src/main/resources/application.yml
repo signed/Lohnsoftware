@@ -3,3 +3,7 @@ spring:
     name: Lohnsoftware
   main:
     banner-mode: off
+Hintergrundprozess:
+  Zeiterfassung:
+    # https://spring.io/blog/2020/11/10/new-in-spring-5-3-improved-cron-expressions
+    CronAusdruck: "0 0 9,21 * * *" # 9 Uhr und 12 Uhr
