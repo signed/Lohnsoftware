@@ -1,0 +1,14 @@
+{
+  "Alice": {
+    "stunden": 3,
+    "minuten": 7
+  },
+  "Bob": {
+    "stunden": 4,
+    "minuten": 45
+  },
+  "Carol": {
+    "stunden": 1,
+    "minuten": 58
+  }
+}
