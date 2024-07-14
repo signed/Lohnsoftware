@@ -8,7 +8,7 @@ import static example.lohnsoftware.core.LocalDateMother.irgendeinLocalDateImSelb
 import static example.lohnsoftware.core.LocalDateMother.letztesLocalDateInIrgendeinemMonat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-class ZeiterfassungImporterTest {
+class StandardZeiterfassungImporterTest {
 
     private final LocalDate heute = letztesLocalDateInIrgendeinemMonat();
     private final FixeUhr uhr = new FixeUhr(heute);
@@ -26,7 +26,7 @@ class ZeiterfassungImporterTest {
         zeiterfassung.arbeitet(mitarbeiterEins, irgendeinLocalDateImSelbenMonatVor(heute), Arbeitsstunden.Erstelle(8, 42));
         zeiterfassung.arbeitet(mitarbeiterZwei, irgendeinLocalDateImSelbenMonatVor(heute), Arbeitsstunden.Erstelle(4, 9));
 
-        final var importer = new ZeiterfassungImporter(zeiterfassung, lohnsoftware, belegschaft, uhr);
+        final var importer = new StandardZeiterfassungImporter(zeiterfassung, lohnsoftware, belegschaft, uhr);
         importer.importiereArbeitsstunden();
 
         assertThat(lohnsoftware.gearbeiteteStunden(mitarbeiterEins, month)).isEqualTo(Arbeitsstunden.Erstelle(8, 42));
