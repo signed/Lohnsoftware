@@ -1,4 +1,14 @@
 package example.lohnsoftware.core;
 
-public record MonatsArbeitsstunden(Mitarbeiter mitarbeiter, LocalMonth month, Arbeitsstunden arbeitsstunden) {
+/**
+ * Warum nur ein Arbeitsstunden für den ganzen Monat an Stelle von ein Arbeitsstunden für jeden Tag
+ * - Meiner Einschätzung werden die Tagesinformation zur Lohnzahlung nicht gebrauch (könnte falsch sein)
+ * - Tages genaue Arbeitsstunden stehen in der Zeiterfassung
+ * - Einfach zu implementieren
+ *
+ * @param month
+ * @param mitarbeiter
+ * @param arbeitsstunden
+ */
+public record MonatsArbeitsstunden(LocalMonth month, Mitarbeiter mitarbeiter, Arbeitsstunden arbeitsstunden) {
 }
