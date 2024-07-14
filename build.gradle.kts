@@ -29,3 +29,8 @@ dependencies {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+
+val enableAgentLoadingForMockito = listOf("-XX:+EnableDynamicAgentLoading")
+tasks.test {
+    jvmArgs(enableAgentLoadingForMockito)
+}
