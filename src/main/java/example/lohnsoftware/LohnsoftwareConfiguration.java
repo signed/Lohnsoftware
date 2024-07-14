@@ -21,9 +21,9 @@ public class LohnsoftwareConfiguration {
     public SchreibeMonatsArbeitsstunden lohnsoftware() {
         return new SchreibeMonatsArbeitsstunden() {
             @Override
-            public SchreibeMonatsArbeitsstundenErgebnis schreib(MonatsArbeitsstunden monatsArbeitsstunden) {
+            public Ergebnis schreib(MonatsArbeitsstunden monatsArbeitsstunden) {
                 //todo implement
-                return SchreibeMonatsArbeitsstundenErgebnis.erfolg("");
+                return Ergebnis.erfolg("");
             }
         };
     }

@@ -1,5 +1,13 @@
 package example.lohnsoftware.core;
 
+import java.util.Optional;
+
 public interface SchreibeMonatsArbeitsstunden {
-    SchreibeMonatsArbeitsstundenErgebnis schreib(MonatsArbeitsstunden monatsArbeitsstunden);
+    Ergebnis schreib(MonatsArbeitsstunden monatsArbeitsstunden);
+
+    record Ergebnis(Optional<String> erfolg) {
+        public static Ergebnis erfolg(String nachricht) {
+            return new Ergebnis(Optional.of(nachricht));
+        }
+    }
 }
