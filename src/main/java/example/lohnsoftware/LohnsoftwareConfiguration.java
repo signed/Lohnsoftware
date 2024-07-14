@@ -2,8 +2,8 @@ package example.lohnsoftware;
 
 import example.lohnsoftware.core.*;
 import example.lohnsoftware.infrastructure.FiktiveZeiterfassung;
-import example.lohnsoftware.infrastructure.JsonGestützteBelegschaft;
-import example.lohnsoftware.infrastructure.JsonGestützterArbeitszeitkonto;
+import example.lohnsoftware.infrastructure.JsonBelegschaft;
+import example.lohnsoftware.infrastructure.JsonArbeitszeitkonto;
 import example.lohnsoftware.infrastructure.SystemUhr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -28,12 +28,12 @@ public class LohnsoftwareConfiguration {
     @Bean
     public Belegschaft belegschaft() {
         final var pfadZurBelegschaft = Path.of("daten", "belegschaft.json");
-        return new JsonGestützteBelegschaft(pfadZurBelegschaft);
+        return new JsonBelegschaft(pfadZurBelegschaft);
     }
 
     @Bean
     public Arbeitszeitkonto monatsArbeitsstundenSchreiber(){
-        return new JsonGestützterArbeitszeitkonto();
+        return new JsonArbeitszeitkonto();
     }
 
     @Bean

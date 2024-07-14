@@ -1,6 +1,5 @@
 package example.lohnsoftware.infrastructure;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import example.lohnsoftware.core.Mitarbeiter;
 import org.junit.jupiter.api.Test;
@@ -9,13 +8,10 @@ import org.junit.jupiter.api.io.TempDir;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class JsonGestützteBelegschaftTest {
+class JsonBelegschaftTest {
 
     @TempDir
     private Path tempDir;
@@ -24,7 +20,7 @@ class JsonGestützteBelegschaftTest {
     void leseAlleMitarbeiterAusJsonDatei() throws IOException {
         angestelltSind("Eins", "Zwei", "Drei");
 
-        final var jsonGestützteBelegschaft = new JsonGestützteBelegschaft(pfadZurBelegschaft());
+        final var jsonGestützteBelegschaft = new JsonBelegschaft(pfadZurBelegschaft());
         assertThat(jsonGestützteBelegschaft.alleMitarbeiter())
                 .containsExactlyInAnyOrder(new Mitarbeiter("Eins"), new Mitarbeiter("Zwei"), new Mitarbeiter("Drei"));
     }

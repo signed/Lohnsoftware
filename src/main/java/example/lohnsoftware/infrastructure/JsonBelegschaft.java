@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class JsonGestützteBelegschaft implements Belegschaft {
+public class JsonBelegschaft implements Belegschaft {
 
     private final Path pfadZurBelegschaft;
 
-    public JsonGestützteBelegschaft(final Path pfadZurBelegschaft) {
+    public JsonBelegschaft(final Path pfadZurBelegschaft) {
         this.pfadZurBelegschaft = pfadZurBelegschaft;
     }
 
