@@ -5,6 +5,7 @@ import example.lohnsoftware.infrastructure.FiktiveZeiterfassung;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.nio.file.Path;
 import java.util.Set;
 
 @Configuration
@@ -12,7 +13,8 @@ public class LohnsoftwareConfiguration {
 
     @Bean
     public Zeiterfassung zeiterfassung() {
-        return new FiktiveZeiterfassung();
+        final var pfadZurZeiterfassung = Path.of("daten", "zeiterfassung.json");
+        return new FiktiveZeiterfassung(pfadZurZeiterfassung);
     }
 
     @Bean

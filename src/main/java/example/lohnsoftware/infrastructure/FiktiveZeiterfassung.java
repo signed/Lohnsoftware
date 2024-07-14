@@ -17,9 +17,10 @@ public class FiktiveZeiterfassung implements Zeiterfassung {
     public record StundenMinutenDTO(int stunden, int minuten) {
     }
 
-    final Path pfadZurZeiterfassung = Path.of("daten", "zeiterfassung.json");
+    private final Path pfadZurZeiterfassung;
 
-    public FiktiveZeiterfassung() {
+    public FiktiveZeiterfassung(final Path pfadZurZeiterfassung) {
+        this.pfadZurZeiterfassung = pfadZurZeiterfassung;
     }
 
     @Override
@@ -29,7 +30,6 @@ public class FiktiveZeiterfassung implements Zeiterfassung {
             TypeFactory typeFactory = mapper.getTypeFactory();
             MapType mapType = typeFactory.constructMapType(HashMap.class, String.class, StundenMinutenDTO.class);
             final var data = pfadZurZeiterfassung.toAbsolutePath().toFile();
-            System.out.println(data);
 
             final HashMap<String, StundenMinutenDTO> daten = mapper.readValue(data, mapType);
             final var alice = daten.get(mitarbeiter.nummer());
