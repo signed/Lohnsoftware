@@ -3,7 +3,7 @@ package example.lohnsoftware;
 import example.lohnsoftware.core.*;
 import example.lohnsoftware.infrastructure.FiktiveZeiterfassung;
 import example.lohnsoftware.infrastructure.JsonGestützteBelegschaft;
-import example.lohnsoftware.infrastructure.JsonGestützterMonatsArbeitsstundenSchreiber;
+import example.lohnsoftware.infrastructure.JsonGestützterArbeitszeitkonto;
 import example.lohnsoftware.infrastructure.SystemUhr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -21,8 +21,8 @@ public class LohnsoftwareConfiguration {
     }
 
     @Bean
-    public AktualisiereMonatsArbeitsstunden lohnsoftware(@Autowired MonatsArbeitsstundenSchreiber monatsArbeitsstundenSchreiber) {
-        return new StandardAktualisiereMonatsArbeitsstunden(monatsArbeitsstundenSchreiber);
+    public AktualisiereMonatsArbeitsstunden lohnsoftware(@Autowired Arbeitszeitkonto arbeitszeitkonto) {
+        return new StandardAktualisiereMonatsArbeitsstunden(arbeitszeitkonto);
     }
 
     @Bean
@@ -32,8 +32,8 @@ public class LohnsoftwareConfiguration {
     }
 
     @Bean
-    public MonatsArbeitsstundenSchreiber monatsArbeitsstundenSchreiber(){
-        return new JsonGestützterMonatsArbeitsstundenSchreiber();
+    public Arbeitszeitkonto monatsArbeitsstundenSchreiber(){
+        return new JsonGestützterArbeitszeitkonto();
     }
 
     @Bean

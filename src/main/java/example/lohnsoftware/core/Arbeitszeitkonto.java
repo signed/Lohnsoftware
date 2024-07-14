@@ -2,7 +2,7 @@ package example.lohnsoftware.core;
 
 import java.util.Optional;
 
-public interface MonatsArbeitsstundenSchreiber {
+public interface Arbeitszeitkonto {
 
     record Ergebnis(Optional<String> erfolg) {
         public static Ergebnis ergebnis(String nachricht) {
@@ -10,5 +10,5 @@ public interface MonatsArbeitsstundenSchreiber {
         }
     }
 
-    Ergebnis schreibe(MonatsArbeitsstunden monatsArbeitsstunden);
+    Ergebnis erfasse(MonatsArbeitsstunden monatsArbeitsstunden);
 }

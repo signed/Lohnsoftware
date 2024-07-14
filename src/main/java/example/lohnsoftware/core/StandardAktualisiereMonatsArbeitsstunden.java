@@ -4,10 +4,10 @@ package example.lohnsoftware.core;
  * Wiederverwendbare Geschäftslogik zum Schreiben von MonatsArbeitsstunden
  */
 public class StandardAktualisiereMonatsArbeitsstunden implements AktualisiereMonatsArbeitsstunden {
-    private final MonatsArbeitsstundenSchreiber monatsArbeitsstundenSchreiber;
+    private final Arbeitszeitkonto arbeitszeitkonto;
 
-    public StandardAktualisiereMonatsArbeitsstunden(MonatsArbeitsstundenSchreiber monatsArbeitsstundenSchreiber) {
-        this.monatsArbeitsstundenSchreiber = monatsArbeitsstundenSchreiber;
+    public StandardAktualisiereMonatsArbeitsstunden(Arbeitszeitkonto arbeitszeitkonto) {
+        this.arbeitszeitkonto = arbeitszeitkonto;
     }
 
     @Override
@@ -17,7 +17,7 @@ public class StandardAktualisiereMonatsArbeitsstunden implements AktualisiereMon
          * - Mehrstunden erst in Folgemonaten Abrechnen (wenn das legal ist)
          * - ...
         */
-        final var ergebnis = this.monatsArbeitsstundenSchreiber.schreibe(monatsArbeitsstunden);
+        final var ergebnis = this.arbeitszeitkonto.erfasse(monatsArbeitsstunden);
         if (ergebnis.erfolg().isPresent()) {
             return Ergebnis.erfolg("Daten die der Aufrufer als Antwort braucht");
         }

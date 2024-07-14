@@ -3,7 +3,3 @@
 - keine Mandantenfähigkeit
     - braucht dedizierten Mandanten-Identifikator
 - Single Machine
-
-# Ideen
-
-- Arbeitszeitkonto
