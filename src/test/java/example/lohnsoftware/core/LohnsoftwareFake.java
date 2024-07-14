@@ -17,7 +17,7 @@ public class LohnsoftwareFake implements Lohnsoftware {
     }
 
     @Override
-    public void schreibeArbeitsstundenFÜr(Mitarbeiter mitarbeiter, LocalMonth month, Arbeitsstunden arbeitsstunden) {
+    public void schreibeArbeitsstundenFür(Mitarbeiter mitarbeiter, LocalMonth month, Arbeitsstunden arbeitsstunden) {
         map.put(new Key(mitarbeiter, month), arbeitsstunden);
     }
 }

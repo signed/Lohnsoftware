@@ -22,7 +22,7 @@ public class StandardZeiterfassungImporter implements ZeiterfassungImporter {
 
     private void importiereArbeitsstundenFür(Mitarbeiter mitarbeiter, LocalMonth month) {
         final var arbeitsstunden = this.zeiterfassung.arbeitsstundenFür(mitarbeiter, month);
-        this.lohnsoftware.schreibeArbeitsstundenFÜr(mitarbeiter, month, arbeitsstunden);
+        this.lohnsoftware.schreibeArbeitsstundenFür(mitarbeiter, month, arbeitsstunden);
     }
 
 }
