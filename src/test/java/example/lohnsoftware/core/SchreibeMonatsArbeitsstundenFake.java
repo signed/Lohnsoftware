@@ -17,7 +17,8 @@ public class SchreibeMonatsArbeitsstundenFake implements SchreibeMonatsArbeitsst
     }
 
     @Override
-    public void schreib(MonatsArbeitsstunden monatsArbeitsstunden) {
+    public SchreibeMonatsArbeitsstundenErgebnis schreib(MonatsArbeitsstunden monatsArbeitsstunden) {
         map.put(new Key(monatsArbeitsstunden.mitarbeiter(), monatsArbeitsstunden.month()), monatsArbeitsstunden.arbeitsstunden());
+        return SchreibeMonatsArbeitsstundenErgebnis.erfolg("");
     }
 }
