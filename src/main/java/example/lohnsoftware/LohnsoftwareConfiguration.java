@@ -18,8 +18,8 @@ public class LohnsoftwareConfiguration {
     }
 
     @Bean
-    public SchreibeMonatsArbeitsstunden lohnsoftware() {
-        return new StandardSchreibeMonatsArbeitsstunden();
+    public AktualisiereMonatsArbeitsstunden lohnsoftware() {
+        return new StandardAktualisiereMonatsArbeitsstunden();
     }
 
     @Bean

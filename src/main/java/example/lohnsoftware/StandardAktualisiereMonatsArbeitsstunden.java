@@ -1,7 +1,7 @@
 package example.lohnsoftware;
 
 import example.lohnsoftware.core.MonatsArbeitsstunden;
-import example.lohnsoftware.core.SchreibeMonatsArbeitsstunden;
+import example.lohnsoftware.core.AktualisiereMonatsArbeitsstunden;
 
 /**
  * Wiederverwendbare Geschäftslogik zum Schreiben von MonatsArbeitsstunden, z.B.
@@ -9,9 +9,9 @@ import example.lohnsoftware.core.SchreibeMonatsArbeitsstunden;
  * - Mehrstunden erst in Folgemonaten Abrechnen (wenn das legal ist)
  * - ...
  */
-public class StandardSchreibeMonatsArbeitsstunden implements SchreibeMonatsArbeitsstunden {
+public class StandardAktualisiereMonatsArbeitsstunden implements AktualisiereMonatsArbeitsstunden {
     @Override
-    public Ergebnis schreibe(MonatsArbeitsstunden monatsArbeitsstunden) {
+    public Ergebnis aktualisiere(MonatsArbeitsstunden monatsArbeitsstunden) {
         //todo implement
         return Ergebnis.erfolg("");
     }

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class SchreibeMonatsArbeitsstundenFake implements SchreibeMonatsArbeitsstunden {
+public class AktualisiereMonatsArbeitsstundenFake implements AktualisiereMonatsArbeitsstunden {
     private record Key(Mitarbeiter mitarbeiter, LocalMonth month) {
     }
 
@@ -17,7 +17,7 @@ public class SchreibeMonatsArbeitsstundenFake implements SchreibeMonatsArbeitsst
     }
 
     @Override
-    public Ergebnis schreibe(MonatsArbeitsstunden monatsArbeitsstunden) {
+    public Ergebnis aktualisiere(MonatsArbeitsstunden monatsArbeitsstunden) {
         map.put(new Key(monatsArbeitsstunden.mitarbeiter(), monatsArbeitsstunden.month()), monatsArbeitsstunden.arbeitsstunden());
         return Ergebnis.erfolg("");
     }
