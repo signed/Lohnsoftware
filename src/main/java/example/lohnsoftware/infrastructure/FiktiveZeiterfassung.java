@@ -32,11 +32,11 @@ public class FiktiveZeiterfassung implements Zeiterfassung {
             final var data = pfadZurZeiterfassung.toAbsolutePath().toFile();
 
             final HashMap<String, StundenMinutenDTO> daten = mapper.readValue(data, mapType);
-            final var alice = daten.get(mitarbeiter.nummer());
-            if (alice == null) {
+            final var erfassteArbeitsstunden = daten.get(mitarbeiter.nummer());
+            if (erfassteArbeitsstunden == null) {
                 return Arbeitsstunden.KeineArbeitsstunden();
             }
-            return Arbeitsstunden.Erstelle(alice.stunden, alice.minuten);
+            return Arbeitsstunden.Erstelle(erfassteArbeitsstunden.stunden, erfassteArbeitsstunden.minuten);
         } catch (IOException e) {
             // Todo: optional zurückgeben um den fehlerfall erkenn zu können um vorher bereits geschriebene gültige daten nicht durch 0 zu ersetzen
             return Arbeitsstunden.KeineArbeitsstunden();
