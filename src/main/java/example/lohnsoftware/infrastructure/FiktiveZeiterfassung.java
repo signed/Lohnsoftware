@@ -19,6 +19,7 @@ public class FiktiveZeiterfassung implements Zeiterfassung {
 
     private final Path pfadZurZeiterfassung;
 
+
     public FiktiveZeiterfassung(final Path pfadZurZeiterfassung) {
         this.pfadZurZeiterfassung = pfadZurZeiterfassung;
     }

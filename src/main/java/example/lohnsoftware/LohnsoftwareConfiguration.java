@@ -27,10 +27,10 @@ public class LohnsoftwareConfiguration {
         };
     }
 
-
     @Bean
     public Belegschaft belegschaft() {
-        return new JsonGestützteBelegschaft();
+        final var pfadZurBelegschaft = Path.of("daten", "belegschaft.json");
+        return new JsonGestützteBelegschaft(pfadZurBelegschaft);
     }
 
     @Bean
