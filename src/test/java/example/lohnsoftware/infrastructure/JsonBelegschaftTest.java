@@ -8,6 +8,7 @@ import org.junit.jupiter.api.io.TempDir;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -20,12 +21,16 @@ class JsonBelegschaftTest {
     void leseAlleMitarbeiterAusJsonDatei() throws IOException {
         angestelltSind("Eins", "Zwei", "Drei");
 
-        final var jsonGestützteBelegschaft = new JsonBelegschaft(pfadZurBelegschaft());
-        assertThat(jsonGestützteBelegschaft.alleMitarbeiter())
+        assertThat(alleMitarbeiter())
                 .containsExactlyInAnyOrder(new Mitarbeiter("Eins"), new Mitarbeiter("Zwei"), new Mitarbeiter("Drei"));
     }
 
-    private void angestelltSind(String ... nummern) throws IOException {
+    private Set<Mitarbeiter> alleMitarbeiter() {
+        final var jsonGestützteBelegschaft = new JsonBelegschaft(pfadZurBelegschaft());
+        return jsonGestützteBelegschaft.alleMitarbeiter();
+    }
+
+    private void angestelltSind(String... nummern) throws IOException {
         final var json = new ObjectMapper().writeValueAsString(nummern);
         Files.writeString(pfadZurBelegschaft(), json);
     }
