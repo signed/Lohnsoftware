@@ -4,7 +4,6 @@ import example.lohnsoftware.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.time.LocalDate;
 import java.util.Set;
 
 @Configuration
@@ -45,13 +44,7 @@ public class LohnsoftwareConfiguration {
 
     @Bean
     public Uhr uhr() {
-        //todo extract
-        return new Uhr() {
-            @Override
-            public LocalDate heute() {
-                return LocalDate.now();
-            }
-        };
+        return new SystemUhr();
     }
 
 }
