@@ -19,13 +19,7 @@ public class LohnsoftwareConfiguration {
 
     @Bean
     public SchreibeMonatsArbeitsstunden lohnsoftware() {
-        return new SchreibeMonatsArbeitsstunden() {
-            @Override
-            public Ergebnis schreibe(MonatsArbeitsstunden monatsArbeitsstunden) {
-                //todo implement
-                return Ergebnis.erfolg("");
-            }
-        };
+        return new StandardSchreibeMonatsArbeitsstunden();
     }
 
     @Bean
