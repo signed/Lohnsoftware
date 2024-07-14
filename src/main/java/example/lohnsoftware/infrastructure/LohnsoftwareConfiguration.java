@@ -1,12 +1,11 @@
-package example.lohnsoftware;
+package example.lohnsoftware.infrastructure;
 
 import example.lohnsoftware.core.*;
-import example.lohnsoftware.infrastructure.FiktiveZeiterfassung;
-import example.lohnsoftware.infrastructure.JsonGestützteBelegschaft;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.nio.file.Path;
+import java.util.Set;
 
 @Configuration
 public class LohnsoftwareConfiguration {
@@ -38,5 +37,11 @@ public class LohnsoftwareConfiguration {
         return new SystemUhr();
     }
 
+    private static class JsonGestützteBelegschaft implements Belegschaft {
+        @Override
+        public Set<Mitarbeiter> alleMitarbeiter() {
+            return Set.of();
+        }
+    }
 }
 
