@@ -1,7 +1,4 @@
-package example.lohnsoftware;
-
-import example.lohnsoftware.core.MonatsArbeitsstunden;
-import example.lohnsoftware.core.AktualisiereMonatsArbeitsstunden;
+package example.lohnsoftware.core;
 
 /**
  * Wiederverwendbare Geschäftslogik zum Schreiben von MonatsArbeitsstunden, z.B.
