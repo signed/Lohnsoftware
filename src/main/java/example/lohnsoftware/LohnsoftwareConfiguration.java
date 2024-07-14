@@ -21,7 +21,7 @@ public class LohnsoftwareConfiguration {
     public Lohnsoftware lohnsoftware() {
         return new Lohnsoftware() {
             @Override
-            public void schreibeArbeitsstundenFür(Mitarbeiter mitarbeiter, LocalMonth month, Arbeitsstunden arbeitsstunden) {
+            public void schreibeArbeitsstundenFür(MonatsArbeitsstunden monatsArbeitsstunden) {
                 //todo implement
             }
         };

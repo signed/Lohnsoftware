@@ -11,9 +11,5 @@
 
 # Ideen
 
-- MonatsArbeitsstunden
-    - Monat
-    - Mitarbeiter
-    - Arbeitsstunden
 - Arbeitszeitkonto
 - Command AktualisierMonatsarbeitsstunden
