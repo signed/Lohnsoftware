@@ -1,4 +1,6 @@
-package example.lohnsoftware.core;
+package example.lohnsoftware.infrastructure;
+
+import example.lohnsoftware.core.Uhr;
 
 import java.time.LocalDate;
 

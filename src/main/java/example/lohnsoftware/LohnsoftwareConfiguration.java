@@ -4,6 +4,7 @@ import example.lohnsoftware.core.*;
 import example.lohnsoftware.infrastructure.FiktiveZeiterfassung;
 import example.lohnsoftware.infrastructure.JsonGestützteBelegschaft;
 import example.lohnsoftware.infrastructure.JsonGestützterMonatsArbeitsstundenSchreiber;
+import example.lohnsoftware.infrastructure.SystemUhr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
