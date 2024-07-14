@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class LohnsoftwareFake implements Lohnsoftware {
+public class SchreibeMonatsArbeitsstundenFake implements SchreibeMonatsArbeitsstunden {
     private record Key(Mitarbeiter mitarbeiter, LocalMonth month) {
     }
 
@@ -17,7 +17,7 @@ public class LohnsoftwareFake implements Lohnsoftware {
     }
 
     @Override
-    public void schreibeArbeitsstundenFür(MonatsArbeitsstunden monatsArbeitsstunden) {
+    public void schreib(MonatsArbeitsstunden monatsArbeitsstunden) {
         map.put(new Key(monatsArbeitsstunden.mitarbeiter(), monatsArbeitsstunden.month()), monatsArbeitsstunden.arbeitsstunden());
     }
 }

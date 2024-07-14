@@ -13,9 +13,9 @@ public class CronKonfiguration {
     @Bean
     public ZeiterfassungImporter zeiterfassungImporter(
             @Autowired Zeiterfassung zeiterfassung,
-            @Autowired Lohnsoftware lohnsoftware,
+            @Autowired SchreibeMonatsArbeitsstunden schreibeMonatsArbeitsstunden,
             @Autowired Belegschaft belegschaft,
             @Autowired Uhr uhr) {
-        return new StandardZeiterfassungImporter(zeiterfassung, lohnsoftware, belegschaft, uhr);
+        return new StandardZeiterfassungImporter(zeiterfassung, schreibeMonatsArbeitsstunden, belegschaft, uhr);
     }
 }

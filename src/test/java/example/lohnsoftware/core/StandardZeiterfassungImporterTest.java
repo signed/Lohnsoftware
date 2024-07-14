@@ -13,7 +13,7 @@ class StandardZeiterfassungImporterTest {
     private final LocalDate heute = letztesLocalDateInIrgendeinemMonat();
     private final FixeUhr uhr = new FixeUhr(heute);
     private final LocalMonth month = LocalMonth.from(heute);
-    private final LohnsoftwareFake lohnsoftware = new LohnsoftwareFake();
+    private final SchreibeMonatsArbeitsstundenFake lohnsoftware = new SchreibeMonatsArbeitsstundenFake();
     private final ZeiterfassungFake zeiterfassung = new ZeiterfassungFake();
     private final BelegschaftFake belegschaft = new BelegschaftFake();
 

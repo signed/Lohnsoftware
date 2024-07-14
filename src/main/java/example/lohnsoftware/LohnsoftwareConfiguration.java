@@ -18,10 +18,10 @@ public class LohnsoftwareConfiguration {
     }
 
     @Bean
-    public Lohnsoftware lohnsoftware() {
-        return new Lohnsoftware() {
+    public SchreibeMonatsArbeitsstunden lohnsoftware() {
+        return new SchreibeMonatsArbeitsstunden() {
             @Override
-            public void schreibeArbeitsstundenFür(MonatsArbeitsstunden monatsArbeitsstunden) {
+            public void schreib(MonatsArbeitsstunden monatsArbeitsstunden) {
                 //todo implement
             }
         };
