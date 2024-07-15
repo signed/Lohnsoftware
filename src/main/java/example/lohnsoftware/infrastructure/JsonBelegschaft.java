@@ -35,6 +35,7 @@ public class JsonBelegschaft implements Belegschaft {
 
     @Override
     public boolean istAngestellt(Mitarbeiter mitarbeiter, LocalMonth month) {
+        // monats scharfe Prüfung habe ich mir für den Moment gespart
         return alleMitarbeiter().contains(mitarbeiter);
     }
 }
