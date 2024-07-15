@@ -33,7 +33,8 @@ public class LohnsoftwareKonfiguration {
 
     @Bean
     public Arbeitszeitkonto monatsArbeitsstundenSchreiber() {
-        return new JsonArbeitszeitkonto();
+        final var pfadZumArbeitszeitkonto = Path.of("daten", "arbeitszeitkonto");
+        return new JsonArbeitszeitkonto(pfadZumArbeitszeitkonto);
     }
 
     @Bean
