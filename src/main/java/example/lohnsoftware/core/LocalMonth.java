@@ -10,6 +10,10 @@ public record LocalMonth(Year year, Month month) {
         return new LocalMonth(Year.from(localDate), Month.from(localDate));
     }
 
+    public static LocalMonth Erstelle(int jahr, int monat) {
+        return Parse(jahr, monat).orElseThrow();
+    }
+
     public static Optional<LocalMonth> Parse(int jahr, int monat) {
         final var year = jahr(jahr);
         final var month = getMonth(monat);
