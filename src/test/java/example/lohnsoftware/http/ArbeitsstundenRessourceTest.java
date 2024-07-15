@@ -6,6 +6,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static example.lohnsoftware.http.SpringSecurityKonfiguration.AuthorityZeiterfassung;
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -18,8 +19,8 @@ class ArbeitsstundenRessourceTest {
     MockMvc mvc;
 
     @Test
-    @WithMockUser(roles = {"ADMIN"})
-    void allowAdminsToAccessTheResource() throws Exception {
+    @WithMockUser(authorities = { AuthorityZeiterfassung })
+    void mitarbeiteMitDerAuthorityZeiterfassungKönnenArbeitsstundenErfassen() throws Exception {
         this.mvc.perform(put("/api/arbeitsstunden/2024/7/Carol").content("""
                         {
                           "stunden": 40,
@@ -30,4 +31,15 @@ class ArbeitsstundenRessourceTest {
 
     }
 
+    @Test
+    @WithMockUser(authorities = {})
+    void roleUserKannKeineArbeitsstundenErfassen() throws Exception {
+
+        this.mvc.perform(put("/api/arbeitsstunden/2024/7/Carol").content("""
+                        {
+                          "stunden": 40,
+                          "minuten": 2
+                        }"""))
+                .andExpect(status().isForbidden());
+    }
 }

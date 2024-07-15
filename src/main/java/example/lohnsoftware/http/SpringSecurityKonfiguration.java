@@ -16,11 +16,18 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SpringSecurityKonfiguration {
 
+    public static final String RolleGeschäftsführer = "Geschäftsführer";
+    public static final String RolleMitarbeiter = "Mitarbeiter";
+
+    public static final String AuthorityZeiterfassung = "Zeiterfassung";
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("api/arbeitsstunden/**").authenticated()
+                        // i. d. R. Geschäftsführer:innen impliziert für mich, das die Aufgabe auch an andere Mitarbeiter
+                        // delegiert werden kann → check nach Authority nicht nach Role
+                        .requestMatchers("api/arbeitsstunden/**").hasAuthority(AuthorityZeiterfassung)
                         .anyRequest().denyAll()
                 ).httpBasic(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable) // WARNING: Do NOT turn this of if you are using cookies
@@ -33,19 +40,21 @@ public class SpringSecurityKonfiguration {
                 User.withDefaultPasswordEncoder()
                         .username("Alice")
                         .password("Alice")
-                        .roles("ABRECHNER")
+                        .roles(RolleGeschäftsführer, RolleMitarbeiter)
+                        .authorities(AuthorityZeiterfassung)
                         .build();
         UserDetails ulf =
                 User.withDefaultPasswordEncoder()
                         .username("Bob")
                         .password("Bob")
-                        .roles("USER")
+                        .roles(RolleMitarbeiter)
                         .build();
         UserDetails carol =
                 User.withDefaultPasswordEncoder()
                         .username("Carol")
                         .password("Carol")
-                        .roles("USER")
+                        .roles(RolleMitarbeiter)
+                        .authorities(AuthorityZeiterfassung)
                         .build();
         return new InMemoryUserDetailsManager(annabelle, ulf, carol);
     }
