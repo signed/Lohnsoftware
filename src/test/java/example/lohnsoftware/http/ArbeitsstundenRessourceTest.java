@@ -68,10 +68,39 @@ class ArbeitsstundenRessourceTest {
                 .andExpect(status().isOk());
     }
 
+
+    @Test
+    @BerechtigungArbeitsstundenErfassen
+    void ungültigesJahr() throws Exception {
+        final var ungültigesJahr = "bogus";
+        this.mvc.perform(put("/api/arbeitsstunden/" + ungültigesJahr + "/7/Carol")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                  "stunden": 40,
+                                  "minuten": 2
+                                }"""))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @BerechtigungArbeitsstundenErfassen
+    void ungültigerMonat() throws Exception {
+        final var ungültigerMonat = "27";
+        this.mvc.perform(put("/api/arbeitsstunden/2024/" + ungültigerMonat + "/Carol")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                  "stunden": 40,
+                                  "minuten": 2
+                                }"""))
+                .andExpect(status().isBadRequest());
+    }
+
+
+
     // Bad Request Szenarien
     // - mitarbeiter unbekannt
     // - stunde 25
-    // - stunde IchBinKeineMinute
-    // - jahr parsen
-    // - monat 43
+    // - minute IchBinKeineMinute
 }

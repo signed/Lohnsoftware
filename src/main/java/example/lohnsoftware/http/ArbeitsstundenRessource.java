@@ -2,6 +2,7 @@ package example.lohnsoftware.http;
 
 import example.lohnsoftware.core.*;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +18,7 @@ public class ArbeitsstundenRessource {
     }
 
     @PutMapping(value = "/api/arbeitsstunden/{jahr}/{monat}/{mitarbeiternummer}")
-    public void aktualisiereArbeitsstunden(
+    public ResponseEntity<?> aktualisiereArbeitsstunden(
             @PathVariable int jahr,
             @PathVariable int monat,
             @PathVariable String mitarbeiternummer,
@@ -27,7 +28,15 @@ public class ArbeitsstundenRessource {
         final var localMonth = LocalMonth.Parse(jahr, monat);
         final var arbeitsstunden = Arbeitsstunden.Parse(body.stunden, body.minuten);
 
+        if (localMonth.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+
+
         final var monatsArbeitsstunden = new MonatsArbeitsstunden(localMonth.get(), mitarbeiter.get(), arbeitsstunden.get());
         aktualisiereMonatsArbeitsstunden.aktualisiere(monatsArbeitsstunden);
+        return ResponseEntity.ok().build();
     }
+
+
 }
