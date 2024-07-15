@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import java.nio.file.Path;
 
 @Configuration
-public class LohnsoftwareConfiguration {
+public class LohnsoftwareKonfiguration {
 
     @Bean
     public Zeiterfassung zeiterfassung() {
