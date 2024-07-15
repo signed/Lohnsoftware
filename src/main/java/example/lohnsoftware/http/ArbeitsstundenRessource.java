@@ -1,8 +1,10 @@
 package example.lohnsoftware.http;
 
 import example.lohnsoftware.core.*;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,11 +20,12 @@ public class ArbeitsstundenRessource {
     public String aktualisiereArbeitsstunden(
             @PathVariable int jahr,
             @PathVariable int monat,
-            @PathVariable String mitarbeiternummer
+            @PathVariable String mitarbeiternummer,
+            @Valid @RequestBody AktualisiereArbeitsstundenRequestDTO body
     ) {
         final var mitarbeiter = Mitarbeiter.Parse(mitarbeiternummer);
         final var localMonth = LocalMonth.Parse(jahr, monat);
-        final var arbeitsstunden = Arbeitsstunden.Parse(40, 2);
+        final var arbeitsstunden = Arbeitsstunden.Parse(body.stunden, body.minuten);
 
         final var monatsArbeitsstunden = new MonatsArbeitsstunden(localMonth.get(), mitarbeiter.get(), arbeitsstunden.get());
         aktualisiereMonatsArbeitsstunden.aktualisiere(monatsArbeitsstunden);

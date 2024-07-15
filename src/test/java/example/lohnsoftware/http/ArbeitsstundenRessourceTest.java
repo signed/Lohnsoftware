@@ -1,5 +1,6 @@
 package example.lohnsoftware.http;
 
+import com.fasterxml.jackson.databind.type.MapType;
 import example.lohnsoftware.core.AktualisiereMonatsArbeitsstundenFake;
 import example.lohnsoftware.core.Arbeitsstunden;
 import example.lohnsoftware.core.LocalMonth;
@@ -10,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
+import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -42,7 +44,9 @@ class ArbeitsstundenRessourceTest {
     @WithMockUser(authorities = {})
     void roleUserKannKeineArbeitsstundenErfassen() throws Exception {
 
-        this.mvc.perform(put("/api/arbeitsstunden/2024/7/Carol").content("""
+        this.mvc.perform(put("/api/arbeitsstunden/2024/7/Carol")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
                         {
                           "stunden": 40,
                           "minuten": 2
@@ -57,7 +61,9 @@ class ArbeitsstundenRessourceTest {
     @Test
     @BerechtigungArbeitsstundenErfassen
     void mitarbeiteMitDerBerechtigungZeiterfassungKönnenArbeitsstundenErfassen() throws Exception {
-        this.mvc.perform(put("/api/arbeitsstunden/2024/7/Carol").content("""
+        this.mvc.perform(put("/api/arbeitsstunden/2024/7/Carol")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
                         {
                           "stunden": 40,
                           "minuten": 2
