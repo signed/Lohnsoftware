@@ -11,6 +11,7 @@ import example.lohnsoftware.core.Zeiterfassung;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.Optional;
 
 public class FiktiveZeiterfassung implements Zeiterfassung {
 
@@ -37,7 +38,8 @@ public class FiktiveZeiterfassung implements Zeiterfassung {
             if (erfassteArbeitsstunden == null) {
                 return Arbeitsstunden.KeineArbeitsstunden();
             }
-            return Arbeitsstunden.Erstelle(erfassteArbeitsstunden.stunden, erfassteArbeitsstunden.minuten);
+            final var arbeitsstunden = Arbeitsstunden.Parse(erfassteArbeitsstunden.stunden, erfassteArbeitsstunden.minuten);
+            return arbeitsstunden.orElseGet(Arbeitsstunden::KeineArbeitsstunden);
         } catch (IOException e) {
             // Todo: optional zurückgeben um den fehlerfall erkenn zu können um vorher bereits geschriebene gültige daten nicht durch 0 zu ersetzen
             return Arbeitsstunden.KeineArbeitsstunden();
