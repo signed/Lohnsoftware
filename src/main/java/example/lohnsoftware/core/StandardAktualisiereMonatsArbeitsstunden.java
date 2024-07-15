@@ -21,6 +21,7 @@ public class StandardAktualisiereMonatsArbeitsstunden implements AktualisiereMon
         if (ergebnis.erfolg().isPresent()) {
             return Ergebnis.erfolg("Daten die der Aufrufer als Antwort braucht");
         }
+        //TODO unbekannter Mitarbeiter
         return Ergebnis.fehlschlag("Daten die der Aufrufer bei einem Fehlschlag braucht");
     }
 }
