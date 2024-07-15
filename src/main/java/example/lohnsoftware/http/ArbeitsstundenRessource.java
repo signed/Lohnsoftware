@@ -1,6 +1,7 @@
 package example.lohnsoftware.http;
 
 import example.lohnsoftware.core.*;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,10 +15,14 @@ public class ArbeitsstundenRessource {
     }
 
     @PutMapping(value = "/api/arbeitsstunden/{jahr}/{monat}/{mitarbeiternummer}")
-    public String aktualisiereArbeitsstunden() {
-        final var carol = Mitarbeiter.Parse("Carol");
-        final var july2024 = LocalMonth.Parse(2024, 7);
-        final var arbeitsstunden = Arbeitsstunden.Parse(2024, 7);
+    public String aktualisiereArbeitsstunden(
+            @PathVariable int jahr,
+            @PathVariable int monat,
+            @PathVariable String mitarbeiternummer
+    ) {
+        final var carol = Mitarbeiter.Parse(mitarbeiternummer);
+        final var july2024 = LocalMonth.Parse(jahr, monat);
+        final var arbeitsstunden = Arbeitsstunden.Parse(40, 2);
 
         final var monatsArbeitsstunden = new MonatsArbeitsstunden(july2024.get(), carol.get(), arbeitsstunden.get());
         aktualisiereMonatsArbeitsstunden.aktualisiere(monatsArbeitsstunden);
