@@ -15,7 +15,7 @@ public class ZeiterfassungFake implements Zeiterfassung {
 
     @Override
     public Arbeitsstunden arbeitsstundenFür(Mitarbeiter mitarbeiter, LocalMonth month) {
-        final var arbeitsstunden = this.arbeitsstunden.get(new Key(mitarbeiter,month));
+        final var arbeitsstunden = this.arbeitsstunden.get(new Key(mitarbeiter, month));
         if (arbeitsstunden == null) {
             return Arbeitsstunden.KeineArbeitsstunden();
         }

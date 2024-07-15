@@ -16,7 +16,7 @@ public class StandardAktualisiereMonatsArbeitsstunden implements AktualisiereMon
          * - Korrektur in der Zeiterfassung nach abgeschlossener Monatsabrechnung
          * - Mehrstunden erst in Folgemonaten Abrechnen (wenn das legal ist)
          * - ...
-        */
+         */
         final var ergebnis = this.arbeitszeitkonto.erfasse(monatsArbeitsstunden);
         if (ergebnis.erfolg().isPresent()) {
             return Ergebnis.erfolg("Daten die der Aufrufer als Antwort braucht");

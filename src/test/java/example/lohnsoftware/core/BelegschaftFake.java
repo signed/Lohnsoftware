@@ -13,7 +13,7 @@ public class BelegschaftFake implements Belegschaft {
         return Collections.unmodifiableSet(alleMitarbeitenden);
     }
 
-    public void einstellen(Mitarbeiter ...mitarbeiter) {
+    public void einstellen(Mitarbeiter... mitarbeiter) {
         this.alleMitarbeitenden.addAll(Arrays.stream(mitarbeiter).toList());
     }
 }

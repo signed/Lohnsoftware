@@ -9,6 +9,7 @@ public interface AktualisiereMonatsArbeitsstunden {
         public static Ergebnis erfolg(String nachricht) {
             return new Ergebnis(Optional.of(nachricht), Optional.empty());
         }
+
         public static Ergebnis fehlschlag(String nachricht) {
             return new Ergebnis(Optional.empty(), Optional.of(nachricht));
         }

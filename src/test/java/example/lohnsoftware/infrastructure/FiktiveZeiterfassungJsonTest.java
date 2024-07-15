@@ -20,7 +20,7 @@ class FiktiveZeiterfassungJsonTest {
     @Test
     void leseArbeitszeitFürMitarbeiterDerBereitsArbeitszeitErfasstHat() throws IOException {
         final var alice = new Mitarbeiter("Alice");
-        erfasseArbeitszeitFür(alice, 3,7);
+        erfasseArbeitszeitFür(alice, 3, 7);
 
         final var arbeitsstunden = arbeitsstundenFür(alice);
         assertThat(arbeitsstunden.stunden().wert()).isEqualTo(3);

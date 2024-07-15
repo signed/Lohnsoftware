@@ -6,7 +6,6 @@ import java.time.Month;
 import java.time.Year;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LocalMonthTest {
 
@@ -17,8 +16,8 @@ class LocalMonthTest {
 
     @Test
     void behandleUngültigeJahre() {
-        assertThat(LocalMonth.Parse(Year.MIN_VALUE-1, 7)).isEmpty();
-        assertThat(LocalMonth.Parse(Year.MAX_VALUE+1, 7)).isEmpty();
+        assertThat(LocalMonth.Parse(Year.MIN_VALUE - 1, 7)).isEmpty();
+        assertThat(LocalMonth.Parse(Year.MAX_VALUE + 1, 7)).isEmpty();
     }
 
     @Test

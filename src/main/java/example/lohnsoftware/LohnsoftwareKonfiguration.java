@@ -2,8 +2,8 @@ package example.lohnsoftware;
 
 import example.lohnsoftware.core.*;
 import example.lohnsoftware.infrastructure.FiktiveZeiterfassung;
-import example.lohnsoftware.infrastructure.JsonBelegschaft;
 import example.lohnsoftware.infrastructure.JsonArbeitszeitkonto;
+import example.lohnsoftware.infrastructure.JsonBelegschaft;
 import example.lohnsoftware.infrastructure.SystemUhr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +32,7 @@ public class LohnsoftwareKonfiguration {
     }
 
     @Bean
-    public Arbeitszeitkonto monatsArbeitsstundenSchreiber(){
+    public Arbeitszeitkonto monatsArbeitsstundenSchreiber() {
         return new JsonArbeitszeitkonto();
     }
 
