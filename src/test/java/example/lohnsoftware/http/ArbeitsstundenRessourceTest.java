@@ -97,10 +97,48 @@ class ArbeitsstundenRessourceTest {
                 .andExpect(status().isBadRequest());
     }
 
+    @Test
+    @BerechtigungArbeitsstundenErfassen
+    void negativeStunden() throws Exception {
+        this.mvc.perform(put("/api/arbeitsstunden/2024/7/Carol")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                  "stunden": -1,
+                                  "minuten": 2
+                                }"""))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @BerechtigungArbeitsstundenErfassen
+    void fehlendeMinuten() throws Exception {
+        this.mvc.perform(put("/api/arbeitsstunden/2024/7/Carol")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                  "stunden": 1
+                                }"""))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @BerechtigungArbeitsstundenErfassen
+    void falscherMinutenDatentyp() throws Exception {
+        this.mvc.perform(put("/api/arbeitsstunden/2024/7/Carol")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                  "stunden": 1,
+                                  "minuten": "ich bin keine minute"
+                                }"""))
+                .andExpect(status().isBadRequest());
+    }
+
+
 
 
     // Bad Request Szenarien
     // - mitarbeiter unbekannt
-    // - stunde 25
     // - minute IchBinKeineMinute
 }
