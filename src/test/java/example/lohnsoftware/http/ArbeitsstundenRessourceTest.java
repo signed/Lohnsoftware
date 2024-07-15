@@ -42,4 +42,11 @@ class ArbeitsstundenRessourceTest {
                 .andExpect(content().string(containsString("Hallo Abrechnung")));
 
     }
+
+    // Bad Request Szenarien
+    // - mitarbeiter unbekannt
+    // - stunde 25
+    // - stunde IchBinKeineMinute
+    // - jahr parsen
+    // - monat 43
 }
