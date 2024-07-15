@@ -21,4 +21,10 @@ class LocalMonthTest {
         assertThat(LocalMonth.Parse(Year.MAX_VALUE+1, 7)).isEmpty();
     }
 
+    @Test
+    void behandleUngültigeMonate() {
+        assertThat(LocalMonth.Parse(2024, 0)).isEmpty();
+        assertThat(LocalMonth.Parse(2024, 13)).isEmpty();
+    }
+
 }
