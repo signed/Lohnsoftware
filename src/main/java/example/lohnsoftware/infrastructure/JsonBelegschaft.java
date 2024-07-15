@@ -3,6 +3,7 @@ package example.lohnsoftware.infrastructure;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import example.lohnsoftware.core.Belegschaft;
+import example.lohnsoftware.core.LocalMonth;
 import example.lohnsoftware.core.Mitarbeiter;
 
 import java.io.IOException;
@@ -30,5 +31,10 @@ public class JsonBelegschaft implements Belegschaft {
         } catch (IOException e) {
             return Collections.emptySet();
         }
+    }
+
+    @Override
+    public boolean istAngestellt(Mitarbeiter mitarbeiter, LocalMonth month) {
+        return alleMitarbeiter().contains(mitarbeiter);
     }
 }

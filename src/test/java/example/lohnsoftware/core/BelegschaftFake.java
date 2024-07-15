@@ -13,7 +13,16 @@ public class BelegschaftFake implements Belegschaft {
         return Collections.unmodifiableSet(alleMitarbeitenden);
     }
 
+    @Override
+    public boolean istAngestellt(Mitarbeiter mitarbeiter, LocalMonth month) {
+        return alleMitarbeitenden.contains(mitarbeiter);
+    }
+
     public void einstellen(Mitarbeiter... mitarbeiter) {
         this.alleMitarbeitenden.addAll(Arrays.stream(mitarbeiter).toList());
+    }
+
+    public void nichtBekannter(Mitarbeiter unbekannt) {
+        this.alleMitarbeitenden.remove(unbekannt);
     }
 }
