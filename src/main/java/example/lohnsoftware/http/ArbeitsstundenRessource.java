@@ -15,11 +15,12 @@ public class ArbeitsstundenRessource {
 
     @PutMapping(value = "/api/arbeitsstunden/{jahr}/{monat}/{mitarbeiternummer}")
     public String aktualisiereArbeitsstunden() {
-        final var carol = Mitarbeiter.Erstelle("Carol");
-        final var july2024 = LocalMonth.Erstelle(2024, 7);
-        final var arbeitsstunden = Arbeitsstunden.Erstelle(2024, 7);
+        final var carol = Mitarbeiter.Parse("Carol");
+        final var july2024 = LocalMonth.Parse(2024, 7);
+        final var arbeitsstunden = Arbeitsstunden.Parse(2024, 7);
 
-        aktualisiereMonatsArbeitsstunden.aktualisiere(new MonatsArbeitsstunden(july2024, carol, arbeitsstunden));
+        final var monatsArbeitsstunden = new MonatsArbeitsstunden(july2024.get(), carol.get(), arbeitsstunden.get());
+        aktualisiereMonatsArbeitsstunden.aktualisiere(monatsArbeitsstunden);
         return "Hallo Abrechnung";
     }
 }
