@@ -28,6 +28,7 @@ public class SpringSecurityKonfiguration {
                         // i. d. R. Geschäftsführer:innen impliziert für mich, das die Aufgabe auch an andere Mitarbeiter
                         // delegiert werden kann → check nach Authority nicht nach Role
                         .requestMatchers("api/arbeitsstunden/**").hasAuthority(AuthorityZeiterfassung)
+                        .requestMatchers("/error").permitAll()
                         .anyRequest().denyAll()
                 ).httpBasic(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable) // WARNING: Do NOT turn this of if you are using cookies
