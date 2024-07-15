@@ -19,8 +19,8 @@ class StandardZeiterfassungImporterTest {
 
     @Test
     void übertrageDieImAktuellenMonatGearbeitetenStundenInDieLohnverarbeitung() {
-        final var mitarbeiterEins = new Mitarbeiter("mitarbeiter eins");
-        final var mitarbeiterZwei = new Mitarbeiter("mitarbeiter zwei");
+        final var mitarbeiterEins = Mitarbeiter.Erstelle("mitarbeiter eins");
+        final var mitarbeiterZwei = Mitarbeiter.Erstelle("mitarbeiter zwei");
 
         belegschaft.einstellen(mitarbeiterEins, mitarbeiterZwei);
         zeiterfassung.arbeitet(mitarbeiterEins, irgendeinLocalDateImSelbenMonatVor(heute), Arbeitsstunden.Erstelle(8, 42));

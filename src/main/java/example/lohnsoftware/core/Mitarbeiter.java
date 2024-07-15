@@ -5,10 +5,10 @@ import java.util.Optional;
 public record Mitarbeiter(String nummer) {
 
     public static Mitarbeiter Erstelle(String nummer) {
-        return parse(nummer).orElseThrow();
+        return Parse(nummer).orElseThrow();
     }
 
-    public static Optional<Mitarbeiter> parse(String nummer) {
+    public static Optional<Mitarbeiter> Parse(String nummer) {
         if (nummer == null) {
             return Optional.empty();
         }
