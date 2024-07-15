@@ -20,11 +20,11 @@ public class ArbeitsstundenRessource {
             @PathVariable int monat,
             @PathVariable String mitarbeiternummer
     ) {
-        final var carol = Mitarbeiter.Parse(mitarbeiternummer);
-        final var july2024 = LocalMonth.Parse(jahr, monat);
+        final var mitarbeiter = Mitarbeiter.Parse(mitarbeiternummer);
+        final var localMonth = LocalMonth.Parse(jahr, monat);
         final var arbeitsstunden = Arbeitsstunden.Parse(40, 2);
 
-        final var monatsArbeitsstunden = new MonatsArbeitsstunden(july2024.get(), carol.get(), arbeitsstunden.get());
+        final var monatsArbeitsstunden = new MonatsArbeitsstunden(localMonth.get(), mitarbeiter.get(), arbeitsstunden.get());
         aktualisiereMonatsArbeitsstunden.aktualisiere(monatsArbeitsstunden);
         return "Hallo Abrechnung";
     }
