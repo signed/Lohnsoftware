@@ -1,5 +1,7 @@
 package example.lohnsoftware.core;
 
+import java.util.Optional;
+
 public record Arbeitsstunden(Stunden stunden, Minuten minuten) {
 
     public static Arbeitsstunden KeineArbeitsstunden() {
@@ -7,9 +9,16 @@ public record Arbeitsstunden(Stunden stunden, Minuten minuten) {
     }
 
     public static Arbeitsstunden Erstelle(int stundenWert, int minutenWert) {
-        final var stunden = Stunden.Erstelle(stundenWert);
-        final var minuten = Minuten.Erstelle(minutenWert);
-        return new Arbeitsstunden(stunden, minuten);
+        return Arbeitsstunden.Parse(stundenWert, minutenWert).orElseThrow();
+    }
+
+    public static Optional<Arbeitsstunden> Parse(int stundenWert, int minutenWert) {
+        final var stunden = Stunden.Parse(stundenWert);
+        final var minuten = Minuten.Parse(minutenWert);
+        if (stunden.isEmpty() || minuten.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(new Arbeitsstunden(stunden.get(), minuten.get()));
     }
 
 }
