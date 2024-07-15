@@ -44,10 +44,10 @@ class ArbeitsstundenRessourceTest {
         this.mvc.perform(put("/api/arbeitsstunden/2024/7/Carol")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
-                        {
-                          "stunden": 40,
-                          "minuten": 2
-                        }"""))
+                                {
+                                  "stunden": 40,
+                                  "minuten": 2
+                                }"""))
                 .andExpect(status().isForbidden());
 
         final var carol = Mitarbeiter.Erstelle("Carol");
@@ -135,10 +135,18 @@ class ArbeitsstundenRessourceTest {
                 .andExpect(status().isBadRequest());
     }
 
-
-
-
-    // Bad Request Szenarien
-    // - mitarbeiter unbekannt
-    // - minute IchBinKeineMinute
+    @Test
+    @BerechtigungArbeitsstundenErfassen
+    void unbekannterMitarbeiter() throws Exception {
+        final var unbekannteMitarbeiterNummer = "JohnDoe";
+        aktualisiereMonatsArbeitsstunden.unbekannterMitarbeiter(unbekannteMitarbeiterNummer);
+        this.mvc.perform(put("/api/arbeitsstunden/2024/7/" + unbekannteMitarbeiterNummer)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                  "stunden": 1,
+                                  "minuten": 2
+                                }"""))
+                .andExpect(status().isNotFound());
+    }
 }

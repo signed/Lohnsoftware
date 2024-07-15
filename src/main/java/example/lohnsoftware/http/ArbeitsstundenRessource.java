@@ -33,15 +33,15 @@ public class ArbeitsstundenRessource {
         final var localMonth = LocalMonth.Parse(jahr, monat);
         final var arbeitsstunden = Arbeitsstunden.Parse(body.stunden, body.minuten);
 
-        if (bindingResult.hasErrors() || localMonth.isEmpty() || arbeitsstunden.isEmpty()) {
+        if (bindingResult.hasErrors() || localMonth.isEmpty() || arbeitsstunden.isEmpty() || mitarbeiter.isEmpty()) {
             return ResponseEntity.badRequest().build();
         }
 
-
         final var monatsArbeitsstunden = new MonatsArbeitsstunden(localMonth.get(), mitarbeiter.get(), arbeitsstunden.get());
-        aktualisiereMonatsArbeitsstunden.aktualisiere(monatsArbeitsstunden);
+        final var ergebnis = aktualisiereMonatsArbeitsstunden.aktualisiere(monatsArbeitsstunden);
+        if (ergebnis.unbekannterMitarbeiter().isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok().build();
     }
-
-
 }
