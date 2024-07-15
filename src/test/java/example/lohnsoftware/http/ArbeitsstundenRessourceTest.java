@@ -139,7 +139,7 @@ class ArbeitsstundenRessourceTest {
 
     @Test
     @BerechtigungArbeitsstundenErfassen
-    void unbekannterMitarbeiter() throws Exception {
+    void unbekannterMitarbeiterGibt_HTTP_404_Zurück() throws Exception {
         final var unbekannteMitarbeiterNummer = "JohnDoe";
         aktualisiereMonatsArbeitsstunden.unbekannterMitarbeiter(unbekannteMitarbeiterNummer);
         this.mvc.perform(put("/api/arbeitsstunden/2024/7/" + unbekannteMitarbeiterNummer)
@@ -150,5 +150,20 @@ class ArbeitsstundenRessourceTest {
                                   "minuten": 2
                                 }"""))
                 .andExpect(status().isNotFound());
+    }
+
+    @Test
+    @BerechtigungArbeitsstundenErfassen
+    void aktualisierungSchlägtAusUnbekanntenGründenFehlGibt_HTTP_500_Zurück() throws Exception {
+        final var unbekannteMitarbeiterNummer = "JohnDoe";
+        aktualisiereMonatsArbeitsstunden.wirdFehlschlagen();
+        this.mvc.perform(put("/api/arbeitsstunden/2024/7/" + unbekannteMitarbeiterNummer)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                  "stunden": 1,
+                                  "minuten": 2
+                                }"""))
+                .andExpect(status().isInternalServerError());
     }
 }

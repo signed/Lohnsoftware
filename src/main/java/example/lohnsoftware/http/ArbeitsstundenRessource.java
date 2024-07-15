@@ -39,8 +39,12 @@ public class ArbeitsstundenRessource {
 
         final var monatsArbeitsstunden = new MonatsArbeitsstunden(localMonth.get(), mitarbeiter.get(), arbeitsstunden.get());
         final var ergebnis = aktualisiereMonatsArbeitsstunden.aktualisiere(monatsArbeitsstunden);
+
         if (ergebnis.unbekannterMitarbeiter().isPresent()) {
             return ResponseEntity.notFound().build();
+        }
+        if (ergebnis.fehlschlag().isPresent()) {
+            return ResponseEntity.internalServerError().build();
         }
         return ResponseEntity.ok().build();
     }
