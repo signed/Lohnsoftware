@@ -21,8 +21,8 @@ public class LohnsoftwareKonfiguration {
     }
 
     @Bean
-    public AktualisiereMonatsArbeitsstunden lohnsoftware(@Autowired Arbeitszeitkonto arbeitszeitkonto) {
-        return new StandardAktualisiereMonatsArbeitsstunden(arbeitszeitkonto);
+    public AktualisiereMonatsArbeitsstunden lohnsoftware(@Autowired Belegschaft belegschaft, @Autowired Arbeitszeitkonto arbeitszeitkonto) {
+        return new StandardAktualisiereMonatsArbeitsstunden(belegschaft, arbeitszeitkonto);
     }
 
     @Bean

@@ -6,7 +6,7 @@ package example.lohnsoftware.core;
 public class StandardAktualisiereMonatsArbeitsstunden implements AktualisiereMonatsArbeitsstunden {
     private final Arbeitszeitkonto arbeitszeitkonto;
 
-    public StandardAktualisiereMonatsArbeitsstunden(Arbeitszeitkonto arbeitszeitkonto) {
+    public StandardAktualisiereMonatsArbeitsstunden(Belegschaft belegschaft, Arbeitszeitkonto arbeitszeitkonto) {
         this.arbeitszeitkonto = arbeitszeitkonto;
     }
 
