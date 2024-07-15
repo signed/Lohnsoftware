@@ -1,0 +1,20 @@
+### Mitarbeiter als Einstiegspunkt
+PUT http://localhost:8080/api/Carol/arbeitsstunden/2024/7/
+Content-Type: application/json
+
+{
+  "stunden": 40,
+  "minuten": 2
+}
+
+### Zeitraum als Einstiegsunkt
+# Aus der Perspektive des Geschäftsführers der die Abreitsstunden für sein Mitarbeiter monatlich erfasst
+# sieht der resource identifier für mich sinnvoller aus
+PUT http://localhost:8080/api/arbeitsstunden/2024/7/Carol
+Authorization: Basic QWxpY2U6QWxpY2U=
+Content-Type: application/json
+
+{
+  "stunden": 40,
+  "minuten": 2
+}
