@@ -14,4 +14,11 @@ class LocalMonthTest {
     void parseGültigeWerte() {
         assertThat(LocalMonth.Parse(2024, 7)).hasValue(new LocalMonth(Year.of(2024), Month.JULY));
     }
+
+    @Test
+    void behandleUngültigeJahre() {
+        assertThat(LocalMonth.Parse(Year.MIN_VALUE-1, 7)).isEmpty();
+        assertThat(LocalMonth.Parse(Year.MAX_VALUE+1, 7)).isEmpty();
+    }
+
 }

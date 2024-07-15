@@ -11,6 +11,18 @@ public record LocalMonth(Year year, Month month) {
     }
 
     public static Optional<LocalMonth> Parse(int jahr, int monat) {
-        return Optional.of(new LocalMonth(Year.of(jahr), Month.of(monat)));
+        final var year = jahr(jahr);
+        if (year.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(new LocalMonth(year.get(), Month.of(monat)));
+    }
+
+    private static Optional<Year> jahr(int jahr) {
+        try {
+            return Optional.of(Year.of(jahr));
+        } catch (Exception e) {
+            return Optional.empty();
+        }
     }
 }
