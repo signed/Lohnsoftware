@@ -19,19 +19,6 @@ class ArbeitsstundenRessourceTest {
     MockMvc mvc;
 
     @Test
-    @WithMockUser(authorities = { AuthorityZeiterfassung })
-    void mitarbeiteMitDerAuthorityZeiterfassungKönnenArbeitsstundenErfassen() throws Exception {
-        this.mvc.perform(put("/api/arbeitsstunden/2024/7/Carol").content("""
-                        {
-                          "stunden": 40,
-                          "minuten": 2
-                        }"""))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Hallo Abrechnung")));
-
-    }
-
-    @Test
     @WithMockUser(authorities = {})
     void roleUserKannKeineArbeitsstundenErfassen() throws Exception {
 
@@ -41,5 +28,18 @@ class ArbeitsstundenRessourceTest {
                           "minuten": 2
                         }"""))
                 .andExpect(status().isForbidden());
+    }
+
+    @Test
+    @BerechtigungArbeitsstundenErfassen
+    void mitarbeiteMitDerBerechtigungZeiterfassungKönnenArbeitsstundenErfassen() throws Exception {
+        this.mvc.perform(put("/api/arbeitsstunden/2024/7/Carol").content("""
+                        {
+                          "stunden": 40,
+                          "minuten": 2
+                        }"""))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("Hallo Abrechnung")));
+
     }
 }
