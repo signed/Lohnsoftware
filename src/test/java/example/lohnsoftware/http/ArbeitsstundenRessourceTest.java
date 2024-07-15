@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,6 +20,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = ArbeitsstundenRessource.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class ArbeitsstundenRessourceTest {
 
     @TestConfiguration
@@ -52,7 +54,7 @@ class ArbeitsstundenRessourceTest {
 
         final var carol = Mitarbeiter.Erstelle("Carol");
         final var july2024 = LocalMonth.Erstelle(2024, 7);
-        assertThat(aktualisiereMonatsArbeitsstunden.gearbeiteteStunden(carol, july2024)).isEqualTo(Arbeitsstunden.Erstelle(40, 2));
+        assertThat(aktualisiereMonatsArbeitsstunden.gearbeiteteStunden(carol, july2024)).isEqualTo(Arbeitsstunden.KeineArbeitsstunden());
     }
 
     @Test
