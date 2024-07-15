@@ -1,6 +1,5 @@
 package example.lohnsoftware.http;
 
-import com.fasterxml.jackson.databind.type.MapType;
 import example.lohnsoftware.core.AktualisiereMonatsArbeitsstundenFake;
 import example.lohnsoftware.core.Arbeitsstunden;
 import example.lohnsoftware.core.LocalMonth;
@@ -16,9 +15,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = ArbeitsstundenRessource.class)
@@ -64,13 +61,11 @@ class ArbeitsstundenRessourceTest {
         this.mvc.perform(put("/api/arbeitsstunden/2024/7/Carol")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
-                        {
-                          "stunden": 40,
-                          "minuten": 2
-                        }"""))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Hallo Abrechnung")));
-
+                                {
+                                  "stunden": 40,
+                                  "minuten": 2
+                                }"""))
+                .andExpect(status().isOk());
     }
 
     // Bad Request Szenarien

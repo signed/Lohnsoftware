@@ -17,7 +17,7 @@ public class ArbeitsstundenRessource {
     }
 
     @PutMapping(value = "/api/arbeitsstunden/{jahr}/{monat}/{mitarbeiternummer}")
-    public String aktualisiereArbeitsstunden(
+    public void aktualisiereArbeitsstunden(
             @PathVariable int jahr,
             @PathVariable int monat,
             @PathVariable String mitarbeiternummer,
@@ -29,6 +29,5 @@ public class ArbeitsstundenRessource {
 
         final var monatsArbeitsstunden = new MonatsArbeitsstunden(localMonth.get(), mitarbeiter.get(), arbeitsstunden.get());
         aktualisiereMonatsArbeitsstunden.aktualisiere(monatsArbeitsstunden);
-        return "Hallo Abrechnung";
     }
 }
