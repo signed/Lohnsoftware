@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class StandardZeiterfassungImporter implements ZeiterfassungImporter {
-    private Logger logger = LoggerFactory.getLogger("ZeiterfassungImporter");
+    private final Logger logger = LoggerFactory.getLogger("ZeiterfassungImporter");
 
     private final Zeiterfassung zeiterfassung;
     private final AktualisiereMonatsArbeitsstunden aktualisiereMonatsArbeitsstunden;

@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class BelegschaftFake implements Belegschaft {
-    private final HashSet<Mitarbeiter> alleMitarbeitenden = new HashSet<Mitarbeiter>();
+    private final HashSet<Mitarbeiter> alleMitarbeitenden = new HashSet<>();
 
     @Override
     public Set<Mitarbeiter> alleMitarbeiter() {
