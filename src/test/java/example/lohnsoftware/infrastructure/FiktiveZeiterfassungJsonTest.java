@@ -9,6 +9,7 @@ import org.junit.jupiter.api.io.TempDir;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,7 +23,7 @@ class FiktiveZeiterfassungJsonTest {
         final var alice = new Mitarbeiter("Alice");
         erfasseArbeitszeitFür(alice, 3, 7);
 
-        final var arbeitsstunden = arbeitsstundenFür(alice);
+        final var arbeitsstunden = arbeitsstundenFür(alice).orElseThrow();
         assertThat(arbeitsstunden.stunden().wert()).isEqualTo(3);
         assertThat(arbeitsstunden.minuten().wert()).isEqualTo(7);
     }
@@ -30,15 +31,14 @@ class FiktiveZeiterfassungJsonTest {
     @Test
     void gibKeineArbeitsstundenZurückFürMitarbeiterDieNochKeineArbeitszeitErfasstHaben() throws IOException {
         nochKeineArbeitszeitErfasst();
-        final var arbeitsstunden = arbeitsstundenFür(new Mitarbeiter("NochKeineZeitErfasst"));
+        final var arbeitsstunden = arbeitsstundenFür(new Mitarbeiter("NochKeineZeitErfasst")).orElseThrow();
 
         assertThat(arbeitsstunden.stunden().wert()).isEqualTo(0);
         assertThat(arbeitsstunden.minuten().wert()).isEqualTo(0);
     }
 
-    private Arbeitsstunden arbeitsstundenFür(Mitarbeiter mitarbeiter) throws IOException {
+    private Optional<Arbeitsstunden> arbeitsstundenFür(Mitarbeiter mitarbeiter) {
         final LocalMonth notAccessed = null;
-
         return new FiktiveZeiterfassung(pfadZurZeiterfassung()).arbeitsstundenFür(mitarbeiter, notAccessed);
     }
 

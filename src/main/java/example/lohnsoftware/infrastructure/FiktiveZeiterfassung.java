@@ -26,7 +26,7 @@ public class FiktiveZeiterfassung implements Zeiterfassung {
     }
 
     @Override
-    public Arbeitsstunden arbeitsstundenFür(Mitarbeiter mitarbeiter, LocalMonth month) {
+    public Optional<Arbeitsstunden> arbeitsstundenFür(Mitarbeiter mitarbeiter, LocalMonth month) {
         try {
             final var mapper = new ObjectMapper();
             TypeFactory typeFactory = mapper.getTypeFactory();
@@ -36,13 +36,11 @@ public class FiktiveZeiterfassung implements Zeiterfassung {
             final HashMap<String, StundenMinutenDTO> daten = mapper.readValue(data, mapType);
             final var erfassteArbeitsstunden = daten.get(mitarbeiter.nummer());
             if (erfassteArbeitsstunden == null) {
-                return Arbeitsstunden.KeineArbeitsstunden();
+                return Optional.of(Arbeitsstunden.KeineArbeitsstunden());
             }
-            final var arbeitsstunden = Arbeitsstunden.Parse(erfassteArbeitsstunden.stunden, erfassteArbeitsstunden.minuten);
-            return arbeitsstunden.orElseGet(Arbeitsstunden::KeineArbeitsstunden);
+            return Arbeitsstunden.Parse(erfassteArbeitsstunden.stunden, erfassteArbeitsstunden.minuten);
         } catch (IOException e) {
-            // Todo: optional zurückgeben um den fehlerfall erkenn zu können um vorher bereits geschriebene gültige daten nicht durch 0 zu ersetzen
-            return Arbeitsstunden.KeineArbeitsstunden();
+            return Optional.empty();
         }
     }
 }

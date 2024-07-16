@@ -1,5 +1,7 @@
 package example.lohnsoftware.core;
 
+import java.util.Optional;
+
 public interface Zeiterfassung {
-    Arbeitsstunden arbeitsstundenFür(Mitarbeiter mitarbeiter, LocalMonth month);
+    Optional<Arbeitsstunden> arbeitsstundenFür(Mitarbeiter mitarbeiter, LocalMonth month);
 }
