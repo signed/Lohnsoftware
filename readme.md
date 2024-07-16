@@ -6,7 +6,7 @@
 - Pro Monat und Mitarbeiter werden nur Stunden und Minuten erfasst
 
 # Später
-
+- Berechtigungen in AktualisiereMonatsArbeitsstunden überprüfen (aktuell nur in Spring Ressource)
 - Union Types für Ergebnis Records
 - Global Exception Handler for HTTP 500 (follow up)
   - https://stackoverflow.com/questions/78055556/why-is-my-spring-security-config-throwing-403-on-permitall-endpoints-also
