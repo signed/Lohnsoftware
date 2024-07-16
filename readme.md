@@ -3,8 +3,9 @@
 - keine Mandantenfähigkeit
     - braucht dedizierten Mandanten-Identifikator
 - Single Machine
+- Pro Monat und Mitarbeiter werden nur Stunden und Minuten erfasst
 
-# Erinnerung
+# Später
 
 - Union Types für Ergebnis Records
 - Global Exception Handler for HTTP 500 (follow up)
