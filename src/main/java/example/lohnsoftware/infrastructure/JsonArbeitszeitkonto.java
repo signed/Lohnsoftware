@@ -17,6 +17,26 @@ import java.util.Locale;
 
 import static java.nio.file.StandardOpenOption.*;
 
+/**
+ * <p>
+ * Bei einem JpaArbeitszeitkonto
+ * - Umsetzung mit <a href="https://spring.io/projects/spring-data">spring-data</a>
+ * - Konflikt Erkennung/Vermeidung <a href="https://docs.spring.io/spring-data/jpa/reference/jpa/locking.html">über Locking</a>
+ * </p>
+ * <p>
+ * Bei einem DynamoDbArbeitszeitkonto
+ * - Umsetzung mit <a href="https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/examples-dynamodb.html">dynamodb-enhanced</a>
+ * - Konflikt Erkennung/Vermeidung <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html#Expressions.ConditionExpressions.SimpleComparisons">Condition expressions</a>
+ * </p>
+ * <p>
+ * Die idee ist in beiden Fällen ähnlich. Zusätzlich zu den Nutzdaten wird noch einer Versionsnummer oder Hash der Nutzdaten geschrieben.
+ * Nur wenn sich die Daten seit meinem letzten Lesen nicht geändert haben (erkennbar an der Versionsnummer oder Nutzdatenhash), wird das Update ausgeführt.
+ * </p>
+ * <p>
+ * Oder <a href="https://docs.spring.io/spring-integration/reference/distributed-locks.html">Distributed Locks mit Spring Integration</a>.
+ * <a href="https://www.youtube.com/watch?v=firwCHbC7-c&t=327s">Spring Tips: Distributed Locks with Spring Integration</a>
+ * </p>
+ */
 public class JsonArbeitszeitkonto implements Arbeitszeitkonto {
 
     private final ObjectMapper objectMapper;
