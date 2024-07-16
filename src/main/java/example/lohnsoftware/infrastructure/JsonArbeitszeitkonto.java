@@ -64,7 +64,6 @@ public class JsonArbeitszeitkonto implements Arbeitszeitkonto {
             var datei = pfadZurDatei(monatsArbeitsstunden);
             return lockeDateiUndSchreibe(datei, json);
         } catch (IOException e) {
-            e.printStackTrace();
             return Ergebnis.fehlschlag("Informationen die der Aufrufer im Falle eines Fehlschlags braucht");
         }
     }
