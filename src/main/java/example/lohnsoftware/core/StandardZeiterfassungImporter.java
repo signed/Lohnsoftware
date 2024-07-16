@@ -28,7 +28,7 @@ public class StandardZeiterfassungImporter implements ZeiterfassungImporter {
 
     private void importiereArbeitsstundenFür(Mitarbeiter mitarbeiter, LocalMonth month) {
         this.zeiterfassung.arbeitsstundenFür(mitarbeiter, month)
-                .map( arbeitsstunden -> new MonatsArbeitsstunden(month, mitarbeiter, arbeitsstunden))
+                .map(arbeitsstunden -> new MonatsArbeitsstunden(month, mitarbeiter, arbeitsstunden))
                 .ifPresent(this.aktualisiereMonatsArbeitsstunden::aktualisiere);
     }
 
