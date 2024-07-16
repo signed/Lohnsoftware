@@ -13,7 +13,7 @@ Content-Type: application/json
 # sieht der resource identifier für mich sinnvoller aus
 # @no-cookie-jar
 PUT {{lohnsoftware}}/api/arbeitsstunden/2024/7/Carol
-Authorization: Basic {{BasicAuthCarol}}
+Authorization: Basic {{BasicAuthAlice}}
 Content-Type: application/json
 
 {
