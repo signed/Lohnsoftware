@@ -8,11 +8,9 @@ import example.lohnsoftware.core.MonatsArbeitsstunden;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
-import java.nio.channels.OverlappingFileLockException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 import java.util.Locale;
 
 import static java.nio.file.StandardOpenOption.*;
