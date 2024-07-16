@@ -1,6 +1,10 @@
 package example.lohnsoftware.core;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class StandardZeiterfassungImporter implements ZeiterfassungImporter {
+    private Logger logger = LoggerFactory.getLogger("ZeiterfassungImporter");
 
     private final Zeiterfassung zeiterfassung;
     private final AktualisiereMonatsArbeitsstunden aktualisiereMonatsArbeitsstunden;
@@ -16,8 +20,10 @@ public class StandardZeiterfassungImporter implements ZeiterfassungImporter {
 
     @Override
     public void importiereArbeitsstunden() {
+        logger.info("{\"prozess\": \"ZeiterfassungImporter\", \"status\": \"start\"}");
         final var month = LocalMonth.from(this.uhr.heute());
         this.belegschaft.alleMitarbeiter().forEach(mitarbeiter -> importiereArbeitsstundenFür(mitarbeiter, month));
+        logger.info("{\"prozess\": \"ZeiterfassungImporter\", \"status\": \"abgeschlossen\"}");
     }
 
     private void importiereArbeitsstundenFür(Mitarbeiter mitarbeiter, LocalMonth month) {
