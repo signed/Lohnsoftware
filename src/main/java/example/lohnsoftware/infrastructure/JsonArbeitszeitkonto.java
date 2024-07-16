@@ -6,10 +6,16 @@ import example.lohnsoftware.core.Arbeitszeitkonto;
 import example.lohnsoftware.core.MonatsArbeitsstunden;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.channels.OverlappingFileLockException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.Locale;
+
+import static java.nio.file.StandardOpenOption.*;
 
 public class JsonArbeitszeitkonto implements Arbeitszeitkonto {
 
@@ -45,10 +51,20 @@ public class JsonArbeitszeitkonto implements Arbeitszeitkonto {
         }
     }
 
-    private static Ergebnis lockeDateiUndSchreibe(Path datei, String json) throws IOException {
-        Files.createDirectories(datei.getParent());
-        Files.writeString(datei, json, StandardOpenOption.CREATE, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
-        return Ergebnis.erfolg("Informationen die der Aufrufer im Erfolgsfall braucht");
+    private static Ergebnis lockeDateiUndSchreibe(Path datei, String json) {
+        try {
+            Files.createDirectories(datei.getParent());
+            try (FileChannel channel = FileChannel.open(datei, WRITE, CREATE, TRUNCATE_EXISTING)) {
+                try (final var ignored = channel.lock()) {
+                    channel.truncate(0);
+                    final var bufferToWrite = ByteBuffer.wrap(json.getBytes(StandardCharsets.UTF_8));
+                    channel.write(bufferToWrite);
+                }
+            }
+            return Ergebnis.erfolg("Informationen die der Aufrufer im Erfolgsfall braucht");
+        } catch (IOException | RuntimeException e) {
+            return Ergebnis.fehlschlag("Schreibe ist fehlgeschlagen");
+        }
     }
 
     private Path pfadZurDatei(MonatsArbeitsstunden monatsArbeitsstunden) {
