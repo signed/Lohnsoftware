@@ -43,7 +43,7 @@ public class JsonArbeitszeitkonto implements Arbeitszeitkonto {
         final var localMonth = monatsArbeitsstunden.month();
         final var jahrOrdner = localMonth.year().toString();
         final var monatsOrdner = String.format(Locale.US, "%02d", localMonth.month().getValue());
-        final var dateiName = monatsArbeitsstunden.mitarbeiter().nummer() + ".json";
+        final var dateiName = monatsArbeitsstunden.mitarbeiter().personalNummer() + ".json";
         return Path.of(jahrOrdner, monatsOrdner, dateiName);
     }
 

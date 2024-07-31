@@ -47,7 +47,7 @@ class FiktiveZeiterfassungJsonTest {
     }
 
     private void erfasseArbeitszeitFür(Mitarbeiter mitarbeiter, int stunden, int minuten) throws IOException {
-        final var identifikator = mitarbeiter.nummer();
+        final var identifikator = mitarbeiter.personalNummer();
         Files.writeString(pfadZurZeiterfassung(), "{\n" +
                                                   "  \"" + identifikator + "\": {\n" +
                                                   "    \"stunden\": " + stunden + ",\n" +

@@ -20,7 +20,7 @@ public class AktualisiereMonatsArbeitsstundenFake implements AktualisiereMonatsA
         if (!erfolg) {
             return Ergebnis.fehlschlag("Hat nicht funktioniert");
         }
-        if (unbekannteMitarbeiter.contains(monatsArbeitsstunden.mitarbeiter().nummer())) {
+        if (unbekannteMitarbeiter.contains(monatsArbeitsstunden.mitarbeiter().personalNummer())) {
             return Ergebnis.unbekannterMitarbeiter("Arbeitet hier nicht");
         }
         map.put(new Key(monatsArbeitsstunden.mitarbeiter(), monatsArbeitsstunden.month()), monatsArbeitsstunden.arbeitsstunden());
