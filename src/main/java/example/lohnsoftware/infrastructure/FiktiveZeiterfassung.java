@@ -34,7 +34,7 @@ public class FiktiveZeiterfassung implements Zeiterfassung {
             final var data = pfadZurZeiterfassung.toAbsolutePath().toFile();
 
             final HashMap<String, StundenMinutenDTO> daten = mapper.readValue(data, mapType);
-            final var erfassteArbeitsstunden = daten.get(mitarbeiter.personalNummer());
+            final var erfassteArbeitsstunden = daten.get(mitarbeiter.personalNummer().wert());
             if (erfassteArbeitsstunden == null) {
                 return Optional.of(Arbeitsstunden.KeineArbeitsstunden());
             }

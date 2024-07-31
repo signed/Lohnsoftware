@@ -7,7 +7,7 @@ public class AktualisiereMonatsArbeitsstundenFake implements AktualisiereMonatsA
 
     }
     private final Map<Key, Arbeitsstunden> map = new HashMap<>();
-    private final List<String> unbekannteMitarbeiter = new ArrayList<>();
+    private final List<PersonalNummer> unbekannteMitarbeiter = new ArrayList<>();
     private boolean erfolg = true;
 
     public Arbeitsstunden gearbeiteteStunden(Mitarbeiter mitarbeiter, LocalMonth month) {
@@ -28,7 +28,7 @@ public class AktualisiereMonatsArbeitsstundenFake implements AktualisiereMonatsA
     }
 
     public void unbekannterMitarbeiter(String mitarbeiterNummer) {
-        this.unbekannteMitarbeiter.add(mitarbeiterNummer);
+        this.unbekannteMitarbeiter.add(PersonalNummer.Erstelle(mitarbeiterNummer));
     }
 
     public void wirdFehlschlagen(){

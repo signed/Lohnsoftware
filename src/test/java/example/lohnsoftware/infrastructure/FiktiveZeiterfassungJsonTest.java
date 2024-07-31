@@ -20,7 +20,7 @@ class FiktiveZeiterfassungJsonTest {
 
     @Test
     void leseArbeitszeitFürMitarbeiterDerBereitsArbeitszeitErfasstHat() throws IOException {
-        final var alice = new Mitarbeiter("Alice");
+        final var alice = Mitarbeiter.Erstelle("Alice");
         erfasseArbeitszeitFür(alice, 3, 7);
 
         final var arbeitsstunden = arbeitsstundenFür(alice).orElseThrow();
@@ -31,7 +31,7 @@ class FiktiveZeiterfassungJsonTest {
     @Test
     void gibKeineArbeitsstundenZurückFürMitarbeiterDieNochKeineArbeitszeitErfasstHaben() throws IOException {
         nochKeineArbeitszeitErfasst();
-        final var arbeitsstunden = arbeitsstundenFür(new Mitarbeiter("NochKeineZeitErfasst")).orElseThrow();
+        final var arbeitsstunden = arbeitsstundenFür(Mitarbeiter.Erstelle("NochKeineZeitErfasst")).orElseThrow();
 
         assertThat(arbeitsstunden.stunden().wert()).isEqualTo(0);
         assertThat(arbeitsstunden.minuten().wert()).isEqualTo(0);
@@ -47,7 +47,7 @@ class FiktiveZeiterfassungJsonTest {
     }
 
     private void erfasseArbeitszeitFür(Mitarbeiter mitarbeiter, int stunden, int minuten) throws IOException {
-        final var identifikator = mitarbeiter.personalNummer();
+        final var identifikator = mitarbeiter.personalNummer().wert();
         Files.writeString(pfadZurZeiterfassung(), "{\n" +
                                                   "  \"" + identifikator + "\": {\n" +
                                                   "    \"stunden\": " + stunden + ",\n" +

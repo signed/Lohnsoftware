@@ -27,7 +27,7 @@ public class JsonBelegschaft implements Belegschaft {
             final var mapper = new ObjectMapper();
             List<String> mitarbeiterDTOS = mapper.readValue(pfadZurBelegschaft.toFile(), new TypeReference<>() {
             });
-            return mitarbeiterDTOS.stream().map(Mitarbeiter::new).collect(Collectors.toSet());
+            return mitarbeiterDTOS.stream().map(Mitarbeiter::Erstelle).collect(Collectors.toSet());
         } catch (IOException e) {
             return Collections.emptySet();
         }
