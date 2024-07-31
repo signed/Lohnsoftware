@@ -9,13 +9,10 @@ public record Mitarbeiter(String nummer) {
     }
 
     public static Optional<Mitarbeiter> Parse(String nummer) {
-        if (nummer == null) {
+        final var personalNummer = PersonalNummer.Parse(nummer);
+        if (personalNummer.isEmpty()) {
             return Optional.empty();
         }
-        final var trimmedNummer = nummer.trim();
-        if (trimmedNummer.isEmpty()) {
-            return Optional.empty();
-        }
-        return Optional.of(new Mitarbeiter(trimmedNummer));
+        return Optional.of(new Mitarbeiter(personalNummer.orElseThrow().wert()));
     }
 }
