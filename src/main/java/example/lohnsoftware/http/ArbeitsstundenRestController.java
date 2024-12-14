@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ArbeitsstundenRessource {
+public class ArbeitsstundenRestController {
 
     final AktualisiereMonatsArbeitsstunden aktualisiereMonatsArbeitsstunden;
 
-    public ArbeitsstundenRessource(AktualisiereMonatsArbeitsstunden aktualisiereMonatsArbeitsstunden) {
+    public ArbeitsstundenRestController(AktualisiereMonatsArbeitsstunden aktualisiereMonatsArbeitsstunden) {
         this.aktualisiereMonatsArbeitsstunden = aktualisiereMonatsArbeitsstunden;
     }
 

@@ -19,9 +19,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(controllers = ArbeitsstundenRessource.class)
+@WebMvcTest(controllers = ArbeitsstundenRestController.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-class ArbeitsstundenRessourceTest {
+class ArbeitsstundenRestControllerTest {
 
     @TestConfiguration
     public static class Konfiguration {
