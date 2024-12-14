@@ -59,7 +59,7 @@ class ArbeitsstundenRestControllerTest {
 
     @Test
     @BerechtigungArbeitsstundenErfassen
-    void mitarbeiteMitDerBerechtigungZeiterfassungKönnenArbeitsstundenErfassen() throws Exception {
+    void mitarbeiterMitDerBerechtigungZeiterfassungKönnenArbeitsstundenErfassen() throws Exception {
         this.mvc.perform(put("/api/arbeitsstunden/2024/7/Carol")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
