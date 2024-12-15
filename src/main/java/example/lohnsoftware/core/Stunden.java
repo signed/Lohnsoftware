@@ -1,16 +1,18 @@
 package example.lohnsoftware.core;
 
-import java.util.Optional;
+import io.vavr.control.Either;
+
+import static example.lohnsoftware.lang.Converter.noSuchElement;
 
 public record Stunden(int wert) {
     public static Stunden Erstelle(int wert) {
-        return Parse(wert).orElseThrow();
+        return Parse(wert).getOrElseThrow(noSuchElement());
     }
 
-    public static Optional<Stunden> Parse(int wert) {
+    public static Either<Void, Stunden> Parse(int wert) {
         if (wert < 0) {
-            return Optional.empty();
+            return Either.left(null);
         }
-        return Optional.of(new Stunden(wert));
+        return Either.right(new Stunden(wert));
     }
 }
