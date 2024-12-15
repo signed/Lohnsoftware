@@ -38,7 +38,7 @@ public class FiktiveZeiterfassung implements Zeiterfassung {
             if (erfassteArbeitsstunden == null) {
                 return Optional.of(Arbeitsstunden.KeineArbeitsstunden());
             }
-            return Arbeitsstunden.Parse(erfassteArbeitsstunden.stunden, erfassteArbeitsstunden.minuten);
+            return Arbeitsstunden.ParseOld(erfassteArbeitsstunden.stunden, erfassteArbeitsstunden.minuten);
         } catch (IOException e) {
             return Optional.empty();
         }

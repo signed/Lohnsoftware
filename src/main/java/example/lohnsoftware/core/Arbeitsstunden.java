@@ -9,10 +9,10 @@ public record Arbeitsstunden(Stunden stunden, Minuten minuten) {
     }
 
     public static Arbeitsstunden Erstelle(int stundenWert, int minutenWert) {
-        return Arbeitsstunden.Parse(stundenWert, minutenWert).orElseThrow();
+        return Arbeitsstunden.ParseOld(stundenWert, minutenWert).orElseThrow();
     }
 
-    public static Optional<Arbeitsstunden> Parse(int stundenWert, int minutenWert) {
+    public static Optional<Arbeitsstunden> ParseOld(int stundenWert, int minutenWert) {
         final var stunden = Stunden.Parse(stundenWert);
         final var minuten = Minuten.Parse(minutenWert);
         if (stunden.isEmpty() || minuten.isEmpty()) {

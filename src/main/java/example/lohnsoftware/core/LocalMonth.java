@@ -11,10 +11,10 @@ public record LocalMonth(Year year, Month month) {
     }
 
     public static LocalMonth Erstelle(int jahr, int monat) {
-        return Parse(jahr, monat).orElseThrow();
+        return ParseOld(jahr, monat).orElseThrow();
     }
 
-    public static Optional<LocalMonth> Parse(int jahr, int monat) {
+    public static Optional<LocalMonth> ParseOld(int jahr, int monat) {
         final var year = jahr(jahr);
         final var month = getMonth(monat);
         if (year.isEmpty() || month.isEmpty()) {

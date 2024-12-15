@@ -13,7 +13,7 @@ class LocalMonthTest {
 
     @Test
     void parseGültigeWerte() {
-        final var parse = LocalMonth.Parse(2024, 7);
+        final var parse = LocalMonth.ParseOld(2024, 7);
         final var expected = new LocalMonth(Year.of(2024), Month.JULY);
         assertThat(parse).hasValue(expected);
         assertThat(Converter.eitherFrom(parse)).containsOnRight(expected);
@@ -21,14 +21,14 @@ class LocalMonthTest {
 
     @Test
     void behandleUngültigeJahre() {
-        assertThat(LocalMonth.Parse(Year.MIN_VALUE - 1, 7)).isEmpty();
-        assertThat(LocalMonth.Parse(Year.MAX_VALUE + 1, 7)).isEmpty();
+        assertThat(LocalMonth.ParseOld(Year.MIN_VALUE - 1, 7)).isEmpty();
+        assertThat(LocalMonth.ParseOld(Year.MAX_VALUE + 1, 7)).isEmpty();
     }
 
     @Test
     void behandleUngültigeMonate() {
-        assertThat(LocalMonth.Parse(2024, 0)).isEmpty();
-        assertThat(LocalMonth.Parse(2024, 13)).isEmpty();
+        assertThat(LocalMonth.ParseOld(2024, 0)).isEmpty();
+        assertThat(LocalMonth.ParseOld(2024, 13)).isEmpty();
     }
 
 }
