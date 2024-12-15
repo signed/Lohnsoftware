@@ -1,8 +1,14 @@
 package example.lohnsoftware.core;
 
+import example.lohnsoftware.lang.Converter;
+import io.vavr.collection.Seq;
+import io.vavr.control.Either;
+
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Year;
+import java.time.temporal.TemporalAccessor;
+import java.util.List;
 import java.util.Optional;
 
 public record LocalMonth(Year year, Month month) {
@@ -15,27 +21,33 @@ public record LocalMonth(Year year, Month month) {
     }
 
     public static Optional<LocalMonth> ParseOld(int jahr, int monat) {
+        return Converter.optionalFrom(Parse(jahr, monat));
+    }
+
+    public static Either<Void,LocalMonth> Parse(int jahr, int monat) {
         final var year = jahr(jahr);
         final var month = getMonth(monat);
-        if (year.isEmpty() || month.isEmpty()) {
-            return Optional.empty();
+        final var sequence =  Either.sequence(List.of(year, month));
+
+        if (sequence.isLeft()) {
+            return Either.left(null);
         }
-        return Optional.of(new LocalMonth(year.get(), month.get()));
+        return Either.right(new LocalMonth(year.get(), month.get()));
     }
 
-    private static Optional<Year> jahr(int jahr) {
+    private static Either<Void,Year> jahr(int jahr) {
         try {
-            return Optional.of(Year.of(jahr));
+            return Either.right(Year.of(jahr));
         } catch (Exception e) {
-            return Optional.empty();
+            return Either.left(null);
         }
     }
 
-    private static Optional<Month> getMonth(int monat) {
+    private static Either<Void,Month> getMonth(int monat) {
         try {
-            return Optional.ofNullable(Month.of(monat));
+            return Either.right(Month.of(monat));
         } catch (Exception e) {
-            return Optional.empty();
+            return Either.left(null);
         }
     }
 }
