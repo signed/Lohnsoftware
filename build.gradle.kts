@@ -43,5 +43,12 @@ spotless {
     java {
         prettier(mapOf("prettier" to "3.4.2", "prettier-plugin-java" to "2.6.5"))
             .config(mapOf("parser" to "java", "tabWidth" to 4, "plugins" to listOf("prettier-plugin-java")))
+            .configFile(".prettierrc.yaml")
+
+        toggleOffOn()
+        removeUnusedImports()
+        trimTrailingWhitespace()
+        endWithNewline()
+        formatAnnotations()
     }
 }
