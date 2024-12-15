@@ -36,3 +36,6 @@ out/
 ### VS Code ###
 .vscode/
 /httpclient/http-client.private.env.json
+
+/package-lock.json
+/node_modules
