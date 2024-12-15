@@ -1,18 +1,26 @@
 package example.lohnsoftware.core;
 
+import io.vavr.control.Either;
+
 import java.util.Optional;
+
+import static example.lohnsoftware.lang.Converter.optionalFrom;
 
 public record Mitarbeiter(PersonalNummer personalNummer) {
 
     public static Mitarbeiter Erstelle(String nummer) {
-        return Parse(nummer).orElseThrow();
+        return ParseOld(nummer).orElseThrow();
     }
 
-    public static Optional<Mitarbeiter> Parse(String nummer) {
+    public static Optional<Mitarbeiter> ParseOld(String nummer) {
+        return optionalFrom(Parse(nummer));
+    }
+
+    public static Either<Void, Mitarbeiter> Parse(String nummer) {
         final var personalNummer = PersonalNummer.Parse(nummer);
         if (personalNummer.isEmpty()) {
-            return Optional.empty();
+            return Either.left(null);
         }
-        return Optional.of(new Mitarbeiter(personalNummer.orElseThrow()));
+        return Either.right(new Mitarbeiter(personalNummer.orElseThrow()));
     }
 }

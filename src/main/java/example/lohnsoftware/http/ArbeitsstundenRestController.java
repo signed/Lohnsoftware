@@ -29,7 +29,7 @@ public class ArbeitsstundenRestController {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().build();
         }
-        final var mitarbeiter = Mitarbeiter.Parse(mitarbeiternummer);
+        final var mitarbeiter = Mitarbeiter.ParseOld(mitarbeiternummer);
         final var localMonth = LocalMonth.Parse(jahr, monat);
         final var arbeitsstunden = Arbeitsstunden.Parse(body.stunden, body.minuten);
 
