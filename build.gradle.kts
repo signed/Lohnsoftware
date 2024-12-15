@@ -2,6 +2,7 @@ plugins {
     java
     id("org.springframework.boot") version "3.4.0"
     id("io.spring.dependency-management") version "1.1.6"
+    id("com.diffplug.spotless") version "7.0.0.BETA4"
 }
 
 group = "example"
@@ -36,4 +37,10 @@ tasks.withType<Test> {
 val enableAgentLoadingForMockito = listOf("-XX:+EnableDynamicAgentLoading")
 tasks.test {
     jvmArgs(enableAgentLoadingForMockito)
+}
+
+spotless {
+    java {
+        googleJavaFormat()
+    }
 }
