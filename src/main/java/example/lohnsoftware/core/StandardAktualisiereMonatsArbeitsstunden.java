@@ -27,7 +27,7 @@ public class StandardAktualisiereMonatsArbeitsstunden implements AktualisiereMon
 
         final var ergebnis = this.arbeitszeitkonto.erfasse(monatsArbeitsstunden);
 
-        if (ergebnis.erfolg().isPresent()) {
+        if (ergebnis.isRight()) {
             return AktualisiereMonatsArbeitsstunden.erfolg("Daten die der Aufrufer als Antwort braucht");
         }
         return Fehler.fehlschlag("Daten die der Aufrufer bei einem Fehlschlag braucht");

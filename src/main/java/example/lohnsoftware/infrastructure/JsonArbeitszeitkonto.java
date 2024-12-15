@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import example.lohnsoftware.core.Arbeitszeitkonto;
 import example.lohnsoftware.core.MonatsArbeitsstunden;
+import io.vavr.control.Either;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -58,17 +59,17 @@ public class JsonArbeitszeitkonto implements Arbeitszeitkonto {
     }
 
     @Override
-    public Ergebnis erfasse(MonatsArbeitsstunden monatsArbeitsstunden) {
+    public Either<Fehler,String> erfasse(MonatsArbeitsstunden monatsArbeitsstunden) {
         try {
             final var json = erstelleJsonFür(monatsArbeitsstunden);
             var datei = pfadZurDatei(monatsArbeitsstunden);
             return lockeDateiUndSchreibe(datei, json);
         } catch (IOException e) {
-            return Ergebnis.fehlschlag("Informationen die der Aufrufer im Falle eines Fehlschlags braucht");
+            return Fehler.fehlschlag("Informationen die der Aufrufer im Falle eines Fehlschlags braucht");
         }
     }
 
-    private static Ergebnis lockeDateiUndSchreibe(Path datei, String json) {
+    private static Either<Fehler,String> lockeDateiUndSchreibe(Path datei, String json) {
         try {
             Files.createDirectories(datei.getParent());
             try (FileChannel channel = FileChannel.open(datei, WRITE, CREATE, TRUNCATE_EXISTING)) {
@@ -78,9 +79,9 @@ public class JsonArbeitszeitkonto implements Arbeitszeitkonto {
                     channel.write(bufferToWrite);
                 }
             }
-            return Ergebnis.erfolg("Informationen die der Aufrufer im Erfolgsfall braucht");
+            return Arbeitszeitkonto.erfolg("Informationen die der Aufrufer im Erfolgsfall braucht");
         } catch (IOException | RuntimeException e) {
-            return Ergebnis.fehlschlag("Schreibe ist fehlgeschlagen");
+            return Fehler.fehlschlag("Schreibe ist fehlgeschlagen");
         }
     }
 

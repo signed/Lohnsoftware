@@ -1,18 +1,22 @@
 package example.lohnsoftware.core;
 
+import io.vavr.control.Either;
+
 import java.util.Optional;
 
 public interface Arbeitszeitkonto {
+    static Either<Fehler, String> erfolg(String nachricht) {
+        return Either.right(nachricht);
+    }
 
-    record Ergebnis(Optional<String> erfolg, Optional<String> fehlschlag) {
-        public static Ergebnis erfolg(String nachricht) {
-            return new Ergebnis(Optional.of(nachricht), Optional.empty());
-        }
-
-        public static Ergebnis fehlschlag(String nachricht) {
-            return new Ergebnis(Optional.empty(), Optional.of(nachricht));
+    sealed interface Fehler permits Generisch {
+        static Either<Fehler, String> fehlschlag(String nachricht) {
+            return Either.left(new Generisch(nachricht));
         }
     }
 
-    Ergebnis erfasse(MonatsArbeitsstunden monatsArbeitsstunden);
+    record Generisch(String nachricht) implements Fehler {
+    }
+
+    Either<Fehler, String> erfasse(MonatsArbeitsstunden monatsArbeitsstunden);
 }
