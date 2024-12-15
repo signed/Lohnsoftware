@@ -1,15 +1,17 @@
 package example.lohnsoftware.core;
 
+import example.lohnsoftware.lang.Converter;
 import io.vavr.control.Either;
 
 import java.util.Optional;
 
+import static example.lohnsoftware.lang.Converter.noSuchElement;
 import static example.lohnsoftware.lang.Converter.optionalFrom;
 
 public record Mitarbeiter(PersonalNummer personalNummer) {
 
     public static Mitarbeiter Erstelle(String nummer) {
-        return ParseOld(nummer).orElseThrow();
+        return Parse(nummer).getOrElseThrow(noSuchElement());
     }
 
     public static Optional<Mitarbeiter> ParseOld(String nummer) {
