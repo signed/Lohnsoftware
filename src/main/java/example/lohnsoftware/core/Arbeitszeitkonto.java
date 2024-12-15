@@ -2,8 +2,6 @@ package example.lohnsoftware.core;
 
 import io.vavr.control.Either;
 
-import java.util.Optional;
-
 public interface Arbeitszeitkonto {
     static Either<Fehler, String> erfolg(String nachricht) {
         return Either.right(nachricht);
