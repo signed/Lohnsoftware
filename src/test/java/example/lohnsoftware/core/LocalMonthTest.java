@@ -1,17 +1,22 @@
 package example.lohnsoftware.core;
 
+import example.lohnsoftware.lang.Converter;
 import org.junit.jupiter.api.Test;
 
 import java.time.Month;
 import java.time.Year;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.vavr.api.VavrAssertions.assertThat;
 
 class LocalMonthTest {
 
     @Test
     void parseGültigeWerte() {
-        assertThat(LocalMonth.Parse(2024, 7)).hasValue(new LocalMonth(Year.of(2024), Month.JULY));
+        final var parse = LocalMonth.Parse(2024, 7);
+        final var expected = new LocalMonth(Year.of(2024), Month.JULY);
+        assertThat(parse).hasValue(expected);
+        assertThat(Converter.eitherFrom(parse)).containsOnRight(expected);
     }
 
     @Test
