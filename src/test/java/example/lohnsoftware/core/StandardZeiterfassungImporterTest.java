@@ -19,18 +19,18 @@ class StandardZeiterfassungImporterTest {
 
     @Test
     void übertrageDieImAktuellenMonatGearbeitetenStundenInDieLohnverarbeitung() {
-        final var mitarbeiterEins = Mitarbeiter.Erstelle("mitarbeiter eins");
-        final var mitarbeiterZwei = Mitarbeiter.Erstelle("mitarbeiter zwei");
+        final var mitarbeiterEins = Mitarbeiter.erstelle("mitarbeiter eins");
+        final var mitarbeiterZwei = Mitarbeiter.erstelle("mitarbeiter zwei");
 
         belegschaft.einstellen(mitarbeiterEins, mitarbeiterZwei);
-        zeiterfassung.arbeitet(mitarbeiterEins, irgendeinLocalDateImSelbenMonatVor(heute), Arbeitsstunden.Erstelle(8, 42));
-        zeiterfassung.arbeitet(mitarbeiterZwei, irgendeinLocalDateImSelbenMonatVor(heute), Arbeitsstunden.Erstelle(4, 9));
+        zeiterfassung.arbeitet(mitarbeiterEins, irgendeinLocalDateImSelbenMonatVor(heute), Arbeitsstunden.erstelle(8, 42));
+        zeiterfassung.arbeitet(mitarbeiterZwei, irgendeinLocalDateImSelbenMonatVor(heute), Arbeitsstunden.erstelle(4, 9));
 
         final var importer = new StandardZeiterfassungImporter(zeiterfassung, lohnsoftware, belegschaft, uhr);
         importer.importiereArbeitsstunden();
 
-        assertThat(lohnsoftware.gearbeiteteStunden(mitarbeiterEins, month)).isEqualTo(Arbeitsstunden.Erstelle(8, 42));
-        assertThat(lohnsoftware.gearbeiteteStunden(mitarbeiterZwei, month)).isEqualTo(Arbeitsstunden.Erstelle(4, 9));
+        assertThat(lohnsoftware.gearbeiteteStunden(mitarbeiterEins, month)).isEqualTo(Arbeitsstunden.erstelle(8, 42));
+        assertThat(lohnsoftware.gearbeiteteStunden(mitarbeiterZwei, month)).isEqualTo(Arbeitsstunden.erstelle(4, 9));
     }
 
 }

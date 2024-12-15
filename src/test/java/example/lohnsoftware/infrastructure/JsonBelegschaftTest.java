@@ -22,7 +22,7 @@ class JsonBelegschaftTest {
         angestelltSind("Eins", "Zwei", "Drei");
 
         assertThat(alleMitarbeiter())
-                .containsExactlyInAnyOrder(Mitarbeiter.Erstelle("Eins"), Mitarbeiter.Erstelle("Zwei"), Mitarbeiter.Erstelle("Drei"));
+                .containsExactlyInAnyOrder(Mitarbeiter.erstelle("Eins"), Mitarbeiter.erstelle("Zwei"), Mitarbeiter.erstelle("Drei"));
     }
 
     private Set<Mitarbeiter> alleMitarbeiter() {

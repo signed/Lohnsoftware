@@ -8,12 +8,12 @@ class StundenTest {
 
     @Test
     void stundenWerteGrößerAls_0_sindGültig() {
-        assertThat(Stunden.Parse(0)).containsOnRight(new Stunden(0));
-        assertThat(Stunden.Parse(42)).containsOnRight(new Stunden(42));
+        assertThat(Stunden.parse(0)).containsOnRight(new Stunden(0));
+        assertThat(Stunden.parse(42)).containsOnRight(new Stunden(42));
     }
 
     @Test
     void negativeStundenSindUngültig() {
-        assertThat(Stunden.Parse(-1)).isLeft();
+        assertThat(Stunden.parse(-1)).isLeft();
     }
 }

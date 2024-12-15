@@ -12,9 +12,9 @@ class StandardAktualisiereMonatsArbeitsstundenTest {
 
     @Test
     void prüfeObDerMitarbeiterBekanntIst() {
-        final var mitarbeiter = Mitarbeiter.Erstelle("unbekannt");
-        final var monat = LocalMonth.Erstelle(2000, 8);
-        final var arbeitsstunden = Arbeitsstunden.Erstelle(7, 42);
+        final var mitarbeiter = Mitarbeiter.erstelle("unbekannt");
+        final var monat = LocalMonth.erstelle(2000, 8);
+        final var arbeitsstunden = Arbeitsstunden.erstelle(7, 42);
         final var stunden = new MonatsArbeitsstunden(monat, mitarbeiter, arbeitsstunden);
         final var flow = new StandardAktualisiereMonatsArbeitsstunden(belegschaft, notAccessed);
         belegschaft.nichtBekannter(mitarbeiter);

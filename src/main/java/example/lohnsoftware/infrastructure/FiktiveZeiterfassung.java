@@ -8,7 +8,6 @@ import example.lohnsoftware.core.LocalMonth;
 import example.lohnsoftware.core.Mitarbeiter;
 import example.lohnsoftware.core.Zeiterfassung;
 import example.lohnsoftware.lang.Converter;
-import io.vavr.control.Either;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -40,7 +39,7 @@ public class FiktiveZeiterfassung implements Zeiterfassung {
             if (erfassteArbeitsstunden == null) {
                 return Optional.of(Arbeitsstunden.KeineArbeitsstunden());
             }
-            final var arbeitsstunden = Arbeitsstunden.Parse(erfassteArbeitsstunden.stunden, erfassteArbeitsstunden.minuten);
+            final var arbeitsstunden = Arbeitsstunden.parse(erfassteArbeitsstunden.stunden, erfassteArbeitsstunden.minuten);
             return Converter.optionalFrom(arbeitsstunden);
         } catch (IOException e) {
             return Optional.empty();

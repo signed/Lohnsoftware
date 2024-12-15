@@ -28,7 +28,7 @@ public class AktualisiereMonatsArbeitsstundenFake implements AktualisiereMonatsA
     }
 
     public void unbekannterMitarbeiter(String mitarbeiterNummer) {
-        this.unbekannteMitarbeiter.add(PersonalNummer.Erstelle(mitarbeiterNummer));
+        this.unbekannteMitarbeiter.add(PersonalNummer.erstelle(mitarbeiterNummer));
     }
 
     public void wirdFehlschlagen(){

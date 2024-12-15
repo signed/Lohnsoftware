@@ -14,11 +14,11 @@ public record LocalMonth(Year year, Month month) {
         return new LocalMonth(Year.from(localDate), Month.from(localDate));
     }
 
-    public static LocalMonth Erstelle(int jahr, int monat) {
-        return Parse(jahr, monat).getOrElseThrow(noSuchElement());
+    public static LocalMonth erstelle(int jahr, int monat) {
+        return parse(jahr, monat).getOrElseThrow(noSuchElement());
     }
 
-    public static Either<Void,LocalMonth> Parse(int jahr, int monat) {
+    public static Either<Void,LocalMonth> parse(int jahr, int monat) {
         final var year = jahr(jahr);
         final var month = getMonth(monat);
         final var sequence =  Either.sequence(List.of(year, month));

@@ -52,8 +52,8 @@ class ArbeitsstundenRestControllerTest {
                                 }"""))
                 .andExpect(status().isForbidden());
 
-        final var carol = Mitarbeiter.Erstelle("Carol");
-        final var july2024 = LocalMonth.Erstelle(2024, 7);
+        final var carol = Mitarbeiter.erstelle("Carol");
+        final var july2024 = LocalMonth.erstelle(2024, 7);
         assertThat(aktualisiereMonatsArbeitsstunden.gearbeiteteStunden(carol, july2024)).isEqualTo(Arbeitsstunden.KeineArbeitsstunden());
     }
 

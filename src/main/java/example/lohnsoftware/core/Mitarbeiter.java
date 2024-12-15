@@ -6,12 +6,12 @@ import static example.lohnsoftware.lang.Converter.noSuchElement;
 
 public record Mitarbeiter(PersonalNummer personalNummer) {
 
-    public static Mitarbeiter Erstelle(String nummer) {
-        return Parse(nummer).getOrElseThrow(noSuchElement());
+    public static Mitarbeiter erstelle(String nummer) {
+        return parse(nummer).getOrElseThrow(noSuchElement());
     }
 
-    public static Either<Void, Mitarbeiter> Parse(String nummer) {
-        final var personalNummer = PersonalNummer.Parse(nummer);
+    public static Either<Void, Mitarbeiter> parse(String nummer) {
+        final var personalNummer = PersonalNummer.parse(nummer);
         if (personalNummer.isEmpty()) {
             return Either.left(null);
         }

@@ -5,11 +5,11 @@ import io.vavr.control.Either;
 import static example.lohnsoftware.lang.Converter.noSuchElement;
 
 public record Minuten(int wert) {
-    public static Minuten Erstelle(int wert) {
-        return Parse(wert).getOrElseThrow(noSuchElement());
+    public static Minuten erstelle(int wert) {
+        return parse(wert).getOrElseThrow(noSuchElement());
     }
 
-    public static Either<Void,Minuten> Parse(int wert) {
+    public static Either<Void,Minuten> parse(int wert) {
         if (wert >= 60 || wert < 0) {
             return Either.left(null);
         }

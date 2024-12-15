@@ -8,18 +8,18 @@ class MinutenTest {
 
     @Test
     void gültigeMinutenWerteLiegenZwischen_0_und_59() {
-        assertThat(Minuten.Parse(0)).containsOnRight(new Minuten(0));
-        assertThat(Minuten.Parse(59)).containsOnRight(new Minuten(59));
+        assertThat(Minuten.parse(0)).containsOnRight(new Minuten(0));
+        assertThat(Minuten.parse(59)).containsOnRight(new Minuten(59));
     }
 
     @Test
     void minutenWerteGrößerGleich_60_SindUngültigeMinuten() {
-        assertThat(Minuten.Parse(60)).isLeft();
+        assertThat(Minuten.parse(60)).isLeft();
     }
 
     @Test
     void minutenWerteKleinerAls_0_SindUngültig() {
-        assertThat(Minuten.Parse(-1)).isLeft();
+        assertThat(Minuten.parse(-1)).isLeft();
     }
 }
 
