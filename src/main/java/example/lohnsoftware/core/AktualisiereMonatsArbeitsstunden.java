@@ -9,7 +9,7 @@ public interface AktualisiereMonatsArbeitsstunden {
         return Either.right(nachricht);
     }
 
-    sealed interface Fehler permits Generisch, UnbekannterMitarbeiter {
+    sealed interface Fehler permits UnbekannterMitarbeiter, Generisch {
         static Either<Fehler, String> fehlschlag(String nachricht) {
             return Either.left(new Generisch(nachricht));
         }
