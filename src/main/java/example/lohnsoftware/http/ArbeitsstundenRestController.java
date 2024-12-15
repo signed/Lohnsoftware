@@ -1,6 +1,7 @@
 package example.lohnsoftware.http;
 
 import example.lohnsoftware.core.*;
+import example.lohnsoftware.lang.Converter;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -30,7 +31,7 @@ public class ArbeitsstundenRestController {
             return ResponseEntity.badRequest().build();
         }
         final var mitarbeiter = Mitarbeiter.Parse(mitarbeiternummer);
-        final var localMonth = LocalMonth.ParseOld(jahr, monat);
+        final var localMonth = LocalMonth.Parse(jahr, monat);
         final var arbeitsstunden = Arbeitsstunden.ParseOld(body.stunden, body.minuten);
 
         if (localMonth.isEmpty() || arbeitsstunden.isEmpty() || mitarbeiter.isEmpty()) {

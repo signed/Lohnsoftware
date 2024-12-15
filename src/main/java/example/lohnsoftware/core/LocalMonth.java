@@ -1,15 +1,13 @@
 package example.lohnsoftware.core;
 
-import example.lohnsoftware.lang.Converter;
-import io.vavr.collection.Seq;
 import io.vavr.control.Either;
 
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Year;
-import java.time.temporal.TemporalAccessor;
 import java.util.List;
-import java.util.Optional;
+
+import static example.lohnsoftware.lang.Converter.noSuchElement;
 
 public record LocalMonth(Year year, Month month) {
     public static LocalMonth from(LocalDate localDate) {
@@ -17,11 +15,7 @@ public record LocalMonth(Year year, Month month) {
     }
 
     public static LocalMonth Erstelle(int jahr, int monat) {
-        return ParseOld(jahr, monat).orElseThrow();
-    }
-
-    public static Optional<LocalMonth> ParseOld(int jahr, int monat) {
-        return Converter.optionalFrom(Parse(jahr, monat));
+        return Parse(jahr, monat).getOrElseThrow(noSuchElement());
     }
 
     public static Either<Void,LocalMonth> Parse(int jahr, int monat) {
