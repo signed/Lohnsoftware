@@ -1,8 +1,17 @@
+# https://github.com/jhipster/prettier-java/blob/main/docs/advanced_usage.md
 # https://prettier.io/docs/en/configuration.html
 # https://prettier.io/docs/en/configuration.html#setting-the-parserdocsenoptionshtmlparser-option
 # https://github.com/diffplug/spotless/tree/main/plugin-gradle#prettier
 # https://github.com/diffplug/spotless/issues/1416#issuecomment-1371948290
 # https://github.com/jhipster/prettier-java
 
-max_line_length: 120
-tabWidth: 4
+plugins:
+  - prettier-plugin-java
+overrides:
+  - files:
+      - "*.java"
+    options:
+      printWidth: 140
+      tabWidth: 4
+      useTabs: false
+      trailingComma: "none"
