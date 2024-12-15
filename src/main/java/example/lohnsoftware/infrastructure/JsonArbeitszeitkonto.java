@@ -1,5 +1,7 @@
 package example.lohnsoftware.infrastructure;
 
+import static java.nio.file.StandardOpenOption.*;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import example.lohnsoftware.core.Arbeitszeitkonto;
@@ -14,18 +16,21 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Locale;
 
-import static java.nio.file.StandardOpenOption.*;
-
 /**
  * <p>
  * Bei einem JpaArbeitszeitkonto
- * - Umsetzung mit <a href="https://spring.io/projects/spring-data">spring-data</a>
- * - Konflikt Erkennung/Vermeidung <a href="https://docs.spring.io/spring-data/jpa/reference/jpa/locking.html">über Locking</a>
+ * <ul>
+ *     <li>Umsetzung mit <a href="https://spring.io/projects/spring-data">spring-data</a></li>
+ *     <li>Konflikt Erkennung/Vermeidung <a href="https://docs.spring.io/spring-data/jpa/reference/jpa/locking.html">über Locking</a></li>
+ * </ul>
+ *
  * </p>
  * <p>
  * Bei einem DynamoDbArbeitszeitkonto
- * - Umsetzung mit <a href="https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/examples-dynamodb.html">dynamodb-enhanced</a>
- * - Konflikt Erkennung/Vermeidung <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html#Expressions.ConditionExpressions.SimpleComparisons">Condition expressions</a>
+ * <ul>
+ *   <li>Umsetzung mit <a href="https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/examples-dynamodb.html">dynamodb-enhanced</a></li>
+ *   <li>Konflikt Erkennung/Vermeidung <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html#Expressions.ConditionExpressions.SimpleComparisons">Condition expressions</a></li>
+ * </ul>
  * </p>
  * <p>
  * Die idee ist in beiden Fällen ähnlich. Zusätzlich zu den Nutzdaten wird noch einer Versionsnummer oder Hash der Nutzdaten geschrieben.
@@ -59,7 +64,7 @@ public class JsonArbeitszeitkonto implements Arbeitszeitkonto {
     }
 
     @Override
-    public Either<Fehler,String> erfasse(MonatsArbeitsstunden monatsArbeitsstunden) {
+    public Either<Fehler, String> erfasse(MonatsArbeitsstunden monatsArbeitsstunden) {
         try {
             final var json = erstelleJsonFür(monatsArbeitsstunden);
             var datei = pfadZurDatei(monatsArbeitsstunden);
@@ -69,7 +74,7 @@ public class JsonArbeitszeitkonto implements Arbeitszeitkonto {
         }
     }
 
-    private static Either<Fehler,String> lockeDateiUndSchreibe(Path datei, String json) {
+    private static Either<Fehler, String> lockeDateiUndSchreibe(Path datei, String json) {
         try {
             Files.createDirectories(datei.getParent());
             try (FileChannel channel = FileChannel.open(datei, WRITE, CREATE, TRUNCATE_EXISTING)) {
@@ -89,7 +94,8 @@ public class JsonArbeitszeitkonto implements Arbeitszeitkonto {
         return basisPfad.resolve(relativerPfadZumSpeicherort(monatsArbeitsstunden));
     }
 
-    private String erstelleJsonFür(MonatsArbeitsstunden monatsArbeitsstunden) throws JsonProcessingException {
+    private String erstelleJsonFür(MonatsArbeitsstunden monatsArbeitsstunden)
+            throws JsonProcessingException {
         final var arbeitsstunden = monatsArbeitsstunden.arbeitsstunden();
         final var stunden = arbeitsstunden.stunden().wert();
         final var minuten = arbeitsstunden.minuten().wert();
