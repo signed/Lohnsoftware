@@ -2,13 +2,12 @@ package example.lohnsoftware.core;
 
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.vavr.api.VavrAssertions.assertThat;
 
 class StandardAktualisiereMonatsArbeitsstundenTest {
 
     final BelegschaftFake belegschaft = new BelegschaftFake();
     final Arbeitszeitkonto notAccessed = null;
-
 
     @Test
     void prüfeObDerMitarbeiterBekanntIst() {
@@ -20,7 +19,7 @@ class StandardAktualisiereMonatsArbeitsstundenTest {
         belegschaft.nichtBekannter(mitarbeiter);
 
         final var ergebnis = flow.aktualisiere(stunden);
-        assertThat(ergebnis.unbekannterMitarbeiter()).isPresent();
+        assertThat(ergebnis).containsLeftInstanceOf(AktualisiereMonatsArbeitsstunden.UnbekannterMitarbeiter.class);
     }
 
 }

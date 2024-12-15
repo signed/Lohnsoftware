@@ -40,12 +40,14 @@ public class ArbeitsstundenRestController {
         final var monatsArbeitsstunden = new MonatsArbeitsstunden(localMonth.get(), mitarbeiter.get(), arbeitsstunden.get());
         final var ergebnis = aktualisiereMonatsArbeitsstunden.aktualisiere(monatsArbeitsstunden);
 
-        if (ergebnis.unbekannterMitarbeiter().isPresent()) {
-            return ResponseEntity.notFound().build();
+        if (ergebnis.isRight()) {
+            return ResponseEntity.ok().build();
         }
-        if (ergebnis.fehlschlag().isPresent()) {
-            return ResponseEntity.internalServerError().build();
-        }
-        return ResponseEntity.ok().build();
+
+        return switch (ergebnis.getLeft()) {
+            case AktualisiereMonatsArbeitsstunden.UnbekannterMitarbeiter ignored -> ResponseEntity.notFound().build();
+            case AktualisiereMonatsArbeitsstunden.Fehler ignored -> ResponseEntity.internalServerError().build();
+        };
+
     }
 }

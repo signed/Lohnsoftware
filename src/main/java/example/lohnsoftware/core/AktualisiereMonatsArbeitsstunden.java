@@ -1,21 +1,29 @@
 package example.lohnsoftware.core;
 
-import java.util.Optional;
+import io.vavr.control.Either;
+
 
 public interface AktualisiereMonatsArbeitsstunden {
-    record Ergebnis(Optional<String> erfolg, Optional<String> fehlschlag, Optional<String> unbekannterMitarbeiter) {
-        public static Ergebnis erfolg(String nachricht) {
-            return new Ergebnis(Optional.of(nachricht), Optional.empty(), Optional.empty());
+
+    static Either<Fehler, String> erfolg(String nachricht) {
+        return Either.right(nachricht);
+    }
+
+    sealed interface Fehler permits Generisch, UnbekannterMitarbeiter {
+        static Either<Fehler, String> fehlschlag(String nachricht) {
+            return Either.left(new Generisch(nachricht));
         }
 
-        public static Ergebnis fehlschlag(String nachricht) {
-            return new Ergebnis(Optional.empty(), Optional.of(nachricht), Optional.empty());
-        }
-
-        public static Ergebnis unbekannterMitarbeiter(String nachricht) {
-            return new Ergebnis(Optional.empty(), Optional.empty(), Optional.of(nachricht));
+        static Either<Fehler, String> unbekannterMitarbeiter(String nachricht) {
+            return Either.left(new UnbekannterMitarbeiter(nachricht));
         }
     }
 
-    Ergebnis aktualisiere(MonatsArbeitsstunden monatsArbeitsstunden);
+    record UnbekannterMitarbeiter(String mitarbeiter) implements Fehler {
+    }
+
+    record Generisch(String nachricht) implements Fehler {
+    }
+
+    Either<Fehler, String> aktualisiere(MonatsArbeitsstunden monatsArbeitsstunden);
 }

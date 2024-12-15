@@ -1,5 +1,7 @@
 package example.lohnsoftware.core;
 
+import io.vavr.control.Either;
+
 import java.util.*;
 
 public class AktualisiereMonatsArbeitsstundenFake implements AktualisiereMonatsArbeitsstunden {
@@ -16,15 +18,15 @@ public class AktualisiereMonatsArbeitsstundenFake implements AktualisiereMonatsA
     }
 
     @Override
-    public Ergebnis aktualisiere(MonatsArbeitsstunden monatsArbeitsstunden) {
+    public Either<Fehler, String> aktualisiere(MonatsArbeitsstunden monatsArbeitsstunden) {
         if (!erfolg) {
-            return Ergebnis.fehlschlag("Hat nicht funktioniert");
+            return Fehler.fehlschlag("Hat nicht funktioniert");
         }
         if (unbekannteMitarbeiter.contains(monatsArbeitsstunden.mitarbeiter().personalNummer())) {
-            return Ergebnis.unbekannterMitarbeiter("Arbeitet hier nicht");
+            return Fehler.unbekannterMitarbeiter("Arbeitet hier nicht");
         }
         map.put(new Key(monatsArbeitsstunden.mitarbeiter(), monatsArbeitsstunden.month()), monatsArbeitsstunden.arbeitsstunden());
-        return Ergebnis.erfolg("");
+        return AktualisiereMonatsArbeitsstunden.erfolg("");
     }
 
     public void unbekannterMitarbeiter(String mitarbeiterNummer) {
