@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import static example.lohnsoftware.lang.Converter.optionalFrom;
+
 @RestController
 public class ArbeitsstundenRestController {
 
@@ -29,7 +31,7 @@ public class ArbeitsstundenRestController {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().build();
         }
-        final var mitarbeiter = Mitarbeiter.ParseOld(mitarbeiternummer);
+        final var mitarbeiter = Mitarbeiter.Parse(mitarbeiternummer);
         final var localMonth = LocalMonth.Parse(jahr, monat);
         final var arbeitsstunden = Arbeitsstunden.Parse(body.stunden, body.minuten);
 
