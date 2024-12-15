@@ -32,7 +32,7 @@ public class ArbeitsstundenRestController {
         }
         final var mitarbeiter = Mitarbeiter.Parse(mitarbeiternummer);
         final var localMonth = LocalMonth.Parse(jahr, monat);
-        final var arbeitsstunden = Arbeitsstunden.ParseOld(body.stunden, body.minuten);
+        final var arbeitsstunden = Arbeitsstunden.Parse(body.stunden, body.minuten);
 
         if (localMonth.isEmpty() || arbeitsstunden.isEmpty() || mitarbeiter.isEmpty()) {
             return ResponseEntity.badRequest().build();

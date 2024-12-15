@@ -1,9 +1,8 @@
 package example.lohnsoftware.core;
 
-import example.lohnsoftware.lang.Converter;
 import io.vavr.control.Either;
 
-import java.util.Optional;
+import static example.lohnsoftware.lang.Converter.noSuchElement;
 
 public record Arbeitsstunden(Stunden stunden, Minuten minuten) {
 
@@ -12,11 +11,7 @@ public record Arbeitsstunden(Stunden stunden, Minuten minuten) {
     }
 
     public static Arbeitsstunden Erstelle(int stundenWert, int minutenWert) {
-        return Arbeitsstunden.ParseOld(stundenWert, minutenWert).orElseThrow();
-    }
-
-    public static Optional<Arbeitsstunden> ParseOld(int stundenWert, int minutenWert) {
-        return Converter.optionalFrom(Parse(stundenWert, minutenWert));
+        return Parse(stundenWert, minutenWert).getOrElseThrow(noSuchElement());
     }
 
     public static Either<Void,Arbeitsstunden> Parse(int stundenWert, int minutenWert) {
