@@ -8,7 +8,7 @@
 # Später
 - Berechtigungen in AktualisiereMonatsArbeitsstunden überprüfen (aktuell nur in Spring Ressource)
 - HTTP 401 und HTTP 403 in ArbeitsstundenRessource sichtbar machen (aktuell in SpringSecurityKonfiguration) 
-- Union Types für Ergebnis Records
+- Union Types für Ergebnis Records (https://spin.atomicobject.com/java-sealed-interface/)
 - Global Exception Handler for HTTP 500 (follow up)
   - https://stackoverflow.com/questions/78055556/why-is-my-spring-security-config-throwing-403-on-permitall-endpoints-also
   - https://www.baeldung.com/exception-handling-for-rest-with-spring
