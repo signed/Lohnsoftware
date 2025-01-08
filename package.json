@@ -6,6 +6,7 @@
     "prettier-plugin-java": "2.6.5"
   },
   "scripts": {
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   }
 }
