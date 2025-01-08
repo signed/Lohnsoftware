@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "devDependencies": {
+    "prettier": "3.4.2",
+    "prettier-plugin-java": "2.6.5"
+  },
+  "scripts": {
+    "format": "prettier --write ."
+  }
+}
