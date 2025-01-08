@@ -19,13 +19,18 @@ import static java.nio.file.StandardOpenOption.*;
 /**
  * <p>
  * Bei einem JpaArbeitszeitkonto
- * - Umsetzung mit <a href="https://spring.io/projects/spring-data">spring-data</a>
- * - Konflikt Erkennung/Vermeidung <a href="https://docs.spring.io/spring-data/jpa/reference/jpa/locking.html">über Locking</a>
+ * <ul>
+ *     <li>Umsetzung mit <a href="https://spring.io/projects/spring-data">spring-data</a></li>
+ *     <li>Konflikt Erkennung/Vermeidung <a href="https://docs.spring.io/spring-data/jpa/reference/jpa/locking.html">über Locking</a></li>
+ * </ul>
+ *
  * </p>
  * <p>
  * Bei einem DynamoDbArbeitszeitkonto
- * - Umsetzung mit <a href="https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/examples-dynamodb.html">dynamodb-enhanced</a>
- * - Konflikt Erkennung/Vermeidung <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html#Expressions.ConditionExpressions.SimpleComparisons">Condition expressions</a>
+ * <ul>
+ *   <li>Umsetzung mit <a href="https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/examples-dynamodb.html">dynamodb-enhanced</a></li>
+ *   <li>Konflikt Erkennung/Vermeidung <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html#Expressions.ConditionExpressions.SimpleComparisons">Condition expressions</a></li>
+ * </ul>
  * </p>
  * <p>
  * Die idee ist in beiden Fällen ähnlich. Zusätzlich zu den Nutzdaten wird noch einer Versionsnummer oder Hash der Nutzdaten geschrieben.
