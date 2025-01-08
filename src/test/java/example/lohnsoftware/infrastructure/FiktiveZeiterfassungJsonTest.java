@@ -9,6 +9,7 @@ import org.junit.jupiter.api.io.TempDir;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.MessageFormat;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -48,12 +49,15 @@ class FiktiveZeiterfassungJsonTest {
 
     private void erfasseArbeitszeitFür(Mitarbeiter mitarbeiter, int stunden, int minuten) throws IOException {
         final var identifikator = mitarbeiter.personalNummer().wert();
-        Files.writeString(pfadZurZeiterfassung(), "{\n" +
-                                                  "  \"" + identifikator + "\": {\n" +
-                                                  "    \"stunden\": " + stunden + ",\n" +
-                                                  "    \"minuten\": " + minuten + "\n" +
-                                                  "  }\n" +
-                                                  "}\n");
+        final var jsonTemplate = """
+                '{'
+                  "{0}": '{'
+                    "stunden": {1},
+                    "minuten": {2}
+                  '}'
+                '}'
+                """;
+        Files.writeString(pfadZurZeiterfassung(), MessageFormat.format(jsonTemplate, identifikator, stunden, minuten));
     }
 
     private Path pfadZurZeiterfassung() {
