@@ -1,6 +1,8 @@
 plugins {
     java
-    id("org.springframework.boot") version "3.4.1"
+    id("org.springframework.boot") version "3.4.4"
+    id("com.github.ben-manes.versions") version "0.52.0"
+    id("se.patrikerdes.use-latest-versions") version "0.2.18"
 }
 
 group = "example"
@@ -21,7 +23,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("io.vavr:vavr:0.10.5")
+    implementation("io.vavr:vavr:0.10.6")
     implementation("org.assertj:assertj-vavr:0.4.3")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
