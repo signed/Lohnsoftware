@@ -1,0 +1,8 @@
+# https://docs.gradle.org/current/userguide/version_catalogs.html#sec:version-catalog-declaration
+[versions]
+vavr = "0.10.6"
+assertj-vavr = "0.4.3"
+
+[libraries]
+vavr = { module = "io.vavr:vavr", version.ref = "vavr" }
+assertj-vavr = { module = "org.assertj:assertj-vavr", version.ref = "assertj-vavr" }
