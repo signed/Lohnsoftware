@@ -24,9 +24,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation(libs.vavr)
-    implementation(libs.assertj.vavr)
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
+    testImplementation(libs.assertj.vavr)
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
