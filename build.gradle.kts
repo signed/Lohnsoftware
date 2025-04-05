@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
 plugins {
     java
     alias(libs.plugins.spring.boot)
@@ -19,7 +21,7 @@ repositories {
 }
 
 dependencies {
-    implementation(platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES))
+    implementation(platform(SpringBootPlugin.BOM_COORDINATES))
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-validation")
@@ -32,6 +34,14 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+configurations.all {
+    resolutionStrategy.eachDependency {
+        if (requested.group == "org.mockito") {
+            useVersion("5.17.0")
+        }
+    }
 }
 
 val enableAgentLoadingForMockito = listOf("-XX:+EnableDynamicAgentLoading")
