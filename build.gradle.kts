@@ -1,8 +1,8 @@
 plugins {
     java
-    id("org.springframework.boot") version "3.4.4"
-    id("com.github.ben-manes.versions") version "0.52.0"
-    id("se.patrikerdes.use-latest-versions") version "0.2.18"
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.versions)
+    alias(libs.plugins.versions.latest)
 }
 
 group = "example"
