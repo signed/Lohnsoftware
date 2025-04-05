@@ -44,7 +44,15 @@ configurations.all {
     }
 }
 
-val enableAgentLoadingForMockito = listOf("-XX:+EnableDynamicAgentLoading")
-tasks.test {
-    jvmArgs(enableAgentLoadingForMockito)
+tasks {
+    test {
+        jvmArgs(
+            jvmArgsList()
+        )
+    }
+}
+
+fun jvmArgsList(): List<String> {
+    val mockitoAgent = configurations.testRuntimeClasspath.get().find { it.name.contains("mockito-core") }
+    return listOf("-javaagent:$mockitoAgent")
 }

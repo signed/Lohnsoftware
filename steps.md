@@ -23,7 +23,26 @@ configurations.all {
 - [Broken links to javadoc.io](https://github.com/mockito/mockito/issues/3615)
 - [What is the mockito-inline MockMaker](https://www.baeldung.com/mockito-core-vs-mockito-inline)
 
-Stick with the dynamic agent loading for now and ignore the error message
+Go with the alternative solution from Stackoverflow
+
+## Alternative Implementation from stackoverflow
+
+- [on stackoverflow](https://stackoverflow.com/questions/79278490/mockito-is-currently-self-attaching-to-enable-the-inline-mock-maker-this-will-n)
+
+```kotlin
+tasks {
+    test {
+        jvmArgs(
+            jvmArgsList()
+        )
+    }
+}
+
+fun jvmArgsList(): List<String> {
+    val mockitoAgent = configurations.testRuntimeClasspath.get().find { it.name.contains("mockito-core") }
+    return listOf("-javaagent:$mockitoAgent")
+}
+```
 
 ## Fix with expiry date
 
