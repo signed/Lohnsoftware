@@ -1,10 +1,4 @@
-# https://docs.spring.io/spring-boot/reference/features/external-config.html
 spring:
-  config:
-    import:
-# https://spring.io/blog/2020/08/14/config-file-processing-in-spring-boot-2-4
-      - optional:developer.yml
-      - optional:absent.yml
   application:
     name: Lohnsoftware
 Hintergrundprozess:
@@ -16,4 +10,4 @@ Hintergrundprozess:
 logging:
   level:
     root: "info"
-    org.springframework.boot.context.config: "trace"
+    org.springframework.boot.context.config: "warn"
