@@ -6,7 +6,7 @@ plugins {
     java
     alias(libs.plugins.spring.boot)
     alias(libs.plugins.version.catalog.update)
-    id("com.diffplug.spotless") version "7.0.1"
+    alias(libs.plugins.spotless)
 }
 
 group = "example"

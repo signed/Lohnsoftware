@@ -1,6 +1,7 @@
 # https://docs.gradle.org/current/userguide/version_catalogs.html#sec:version-catalog-declaration
 [versions]
 assertj-vavr = "0.4.3"
+spotless = "7.0.4"
 spring-boot = "3.5.0"
 vavr = "0.10.6"
 version-catalog-update = "1.0.0"
@@ -10,5 +11,6 @@ assertj-vavr = { module = "org.assertj:assertj-vavr", version.ref = "assertj-vav
 vavr = { module = "io.vavr:vavr", version.ref = "vavr" }
 
 [plugins]
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
 version-catalog-update = { id = "nl.littlerobots.version-catalog-update", version.ref = "version-catalog-update" }
