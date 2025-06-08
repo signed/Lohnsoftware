@@ -16,4 +16,4 @@ Hintergrundprozess:
 logging:
   level:
     root: "info"
-    org.springframework.boot.context.config: "warn"
+    org.springframework.boot.context.config: "trace"
