@@ -40,3 +40,5 @@ out/
 ### npm and node
 /package-lock.json
 /node_modules
+
+/src/main/resources/absent.yml
