@@ -1,8 +1,6 @@
 spring:
   application:
     name: Lohnsoftware
-  main:
-    banner-mode: off
 Hintergrundprozess:
   Zeiterfassung:
     # https://spring.io/blog/2020/11/10/new-in-spring-5-3-improved-cron-expressions
