@@ -1,5 +1,4 @@
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
-import nl.littlerobots.vcu.plugin.versionSelector
 import nl.littlerobots.vcu.plugin.resolver.VersionSelectors
 
 plugins {
