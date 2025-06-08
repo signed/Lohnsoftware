@@ -1,7 +1,11 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+import nl.littlerobots.vcu.plugin.versionSelector
+import nl.littlerobots.vcu.plugin.resolver.VersionSelectors
+
 plugins {
     java
-    id("org.springframework.boot") version "3.4.1"
-    id("io.spring.dependency-management") version "1.1.7"
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.version.catalog.update)
 }
 
 group = "example"
@@ -18,22 +22,42 @@ repositories {
 }
 
 dependencies {
+    implementation(platform(SpringBootPlugin.BOM_COORDINATES))
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("io.vavr:vavr:0.10.5")
-    implementation("org.assertj:assertj-vavr:0.4.3")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
+    implementation(libs.vavr)
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
+    testImplementation(libs.assertj.vavr)
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
+
+versionCatalogUpdate {
+    versionSelector(VersionSelectors.STABLE)
 }
 
 tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-val enableAgentLoadingForMockito = listOf("-XX:+EnableDynamicAgentLoading")
-tasks.test {
-    jvmArgs(enableAgentLoadingForMockito)
+configurations.all {
+    resolutionStrategy.eachDependency {
+        if (requested.group == "org.mockito") {
+            useVersion("5.17.0")
+        }
+    }
+}
+
+tasks {
+    test {
+        jvmArgs(
+            jvmArgsList()
+        )
+    }
+}
+
+fun jvmArgsList(): List<String> {
+    val mockitoAgent = configurations.testRuntimeClasspath.get().find { it.name.contains("mockito-core") }
+    return listOf("-javaagent:$mockitoAgent")
 }

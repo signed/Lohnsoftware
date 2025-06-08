@@ -27,7 +27,7 @@ public class SpringSecurityKonfiguration {
                 .authorizeHttpRequests((requests) -> requests
                         // i. d. R. Geschäftsführer:innen impliziert für mich, das die Aufgabe auch an andere Mitarbeiter
                         // delegiert werden kann → check nach Authority nicht nach Role
-                        .requestMatchers("api/arbeitsstunden/**").hasAuthority(AuthorityZeiterfassung)
+                        .requestMatchers("/api/arbeitsstunden/**").hasAuthority(AuthorityZeiterfassung)
                         .requestMatchers("/error").permitAll()
                         .anyRequest().denyAll()
                 ).httpBasic(Customizer.withDefaults())
@@ -38,26 +38,31 @@ public class SpringSecurityKonfiguration {
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails annabelle =
-                User.withDefaultPasswordEncoder()
+                justADemoProjectUser()
                         .username("Alice")
                         .password("Alice")
                         .roles(RolleGeschäftsführer, RolleMitarbeiter)
                         .authorities(AuthorityZeiterfassung)
                         .build();
         UserDetails ulf =
-                User.withDefaultPasswordEncoder()
+                justADemoProjectUser()
                         .username("Bob")
                         .password("Bob")
                         .roles(RolleMitarbeiter)
                         .build();
         UserDetails carol =
-                User.withDefaultPasswordEncoder()
+                justADemoProjectUser()
                         .username("Carol")
                         .password("Carol")
                         .roles(RolleMitarbeiter)
                         .authorities(AuthorityZeiterfassung)
                         .build();
         return new InMemoryUserDetailsManager(annabelle, ulf, carol);
+    }
+
+    @SuppressWarnings("deprecation")
+    private static User.UserBuilder justADemoProjectUser() {
+        return User.withDefaultPasswordEncoder();
     }
 
 }
