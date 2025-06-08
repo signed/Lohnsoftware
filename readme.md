@@ -16,4 +16,4 @@
 
 # Abhängigkeiten aktualisieren
 
-- ./gradlew useLatestVersionsCheck
+- ./gradlew versionCatalogUpdate

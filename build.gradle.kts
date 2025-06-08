@@ -1,10 +1,10 @@
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
+import nl.littlerobots.vcu.plugin.resolver.VersionSelectors
 
 plugins {
     java
     alias(libs.plugins.spring.boot)
-    alias(libs.plugins.versions)
-    alias(libs.plugins.versions.latest)
+    alias(libs.plugins.version.catalog.update)
 }
 
 group = "example"
@@ -30,6 +30,10 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation(libs.assertj.vavr)
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
+
+versionCatalogUpdate {
+    versionSelector(VersionSelectors.STABLE)
 }
 
 tasks.withType<Test> {
