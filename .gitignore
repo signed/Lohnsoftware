@@ -41,4 +41,4 @@ out/
 /package-lock.json
 /node_modules
 
-src/main/resources/absent.yml
+/src/main/resources/absent.yml
