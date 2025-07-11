@@ -2,7 +2,7 @@
 [versions]
 assertj-vavr = "0.4.3"
 spotless = "7.0.4"
-spring-boot = "3.5.0"
+spring-boot = "3.5.3"
 vavr = "0.10.6"
 version-catalog-update = "1.0.0"
 
