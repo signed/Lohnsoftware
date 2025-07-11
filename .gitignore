@@ -42,3 +42,4 @@ out/
 /node_modules
 
 /src/main/resources/absent.yml
+docker
