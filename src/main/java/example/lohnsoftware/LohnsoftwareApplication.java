@@ -8,13 +8,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
-@Import({SpringSecurityKonfiguration.class, CronKonfiguration.class, LohnsoftwareKonfiguration.class})
+@Import({DisableClasspathScanning.class, SpringSecurityKonfiguration.class, CronKonfiguration.class, LohnsoftwareKonfiguration.class})
 public class LohnsoftwareApplication {
 
-    public static void main(String[] args) {
-      var application = new SpringApplication(LohnsoftwareApplication.class);
-      application.setBannerMode(Banner.Mode.OFF);
-      application.run(args);
-    }
+  public static void main(String[] args) {
+    var application = new SpringApplication(LohnsoftwareApplication.class);
+    application.setBannerMode(Banner.Mode.OFF);
+    application.run(args);
+  }
 
 }
