@@ -43,3 +43,4 @@ out/
 
 /src/main/resources/absent.yml
 docker
+structure.log

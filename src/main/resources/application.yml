@@ -13,6 +13,9 @@ logging:
   level:
     root: "info"
     org.springframework.boot.context.config: "warn"
+  file:
+    name: structure.log
   structured:
     format:
       console: ecs
+      file: ecs
