@@ -19,6 +19,8 @@ logging:
     format:
       console: ecs
       file: ecs
+      # console: example.lohnsoftware.explore.LohnsoftwareLoggingFormatter
+      # file: example.lohnsoftware.explore.LohnsoftwareLoggingFormatter
     ecs:
       service:
         #name: HardCodedName # uncomment to override spring.application.name
