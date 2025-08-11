@@ -19,3 +19,9 @@ logging:
     format:
       console: ecs
       file: ecs
+    ecs:
+      service:
+        #name: HardCodedName # uncomment to override spring.application.name
+        version: 0.0.1
+        environment: fantasy
+        node-name: local
