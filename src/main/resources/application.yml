@@ -6,8 +6,13 @@ Hintergrundprozess:
     # https://spring.io/blog/2020/11/10/new-in-spring-5-3-improved-cron-expressions
     #CronAusdruck: "*/15 * * * * *" # all 15 Sekunde
     CronAusdruck: "0 0 9,21 * * *" # 9 Uhr und 12 Uhr
+# https://docs.spring.io/spring-boot/reference/features/logging.html
 # https://docs.spring.io/spring-boot/reference/features/logging.html#features.logging.log-levels
+# https://spring.io/blog/2024/08/23/structured-logging-in-spring-boot-3-4
 logging:
   level:
     root: "info"
     org.springframework.boot.context.config: "warn"
+  structured:
+    format:
+      console: ecs
