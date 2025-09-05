@@ -39,7 +39,7 @@ class FiktiveZeiterfassungJsonTest {
     }
 
     private Optional<Arbeitsstunden> arbeitsstundenFür(Mitarbeiter mitarbeiter) {
-        final LocalMonth notAccessed = null;
+        final LocalMonth notAccessed = LocalMonth.erstelle(2010, 1);
         return new FiktiveZeiterfassung(pfadZurZeiterfassung()).arbeitsstundenFür(mitarbeiter, notAccessed);
     }
 

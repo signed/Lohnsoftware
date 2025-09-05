@@ -74,8 +74,11 @@ tasks.withType<JavaCompile>().configureEach {
         disable("UnicodeInCode")
     }
     options.errorprone.nullaway {
+        // https://github.com/tbroyer/gradle-nullaway-plugin?tab=readme-ov-file#properties
         error()
         unannotatedSubPackages.add("com.foo.baz")
+        excludedClasses = listOf("example.lohnsoftware.http.AktualisiereArbeitsstundenRequestDTO")
+        excludedFieldAnnotations = listOf("org.junit.jupiter.api.io.TempDir")
     }
 }
 

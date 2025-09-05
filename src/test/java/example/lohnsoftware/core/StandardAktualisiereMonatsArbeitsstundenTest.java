@@ -1,5 +1,7 @@
 package example.lohnsoftware.core;
 
+import io.vavr.control.Either;
+import org.jspecify.annotations.Nullable;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.vavr.api.VavrAssertions.assertThat;
@@ -7,7 +9,12 @@ import static org.assertj.vavr.api.VavrAssertions.assertThat;
 class StandardAktualisiereMonatsArbeitsstundenTest {
 
     final BelegschaftFake belegschaft = new BelegschaftFake();
-    final Arbeitszeitkonto notAccessed = null;
+    final Arbeitszeitkonto notAccessed = new Arbeitszeitkonto() {
+      @Override
+      public Either<Fehler, String> erfasse(MonatsArbeitsstunden monatsArbeitsstunden) {
+        throw new UnsupportedOperationException();
+      }
+    };
 
     @Test
     void prüfeObDerMitarbeiterBekanntIst() {

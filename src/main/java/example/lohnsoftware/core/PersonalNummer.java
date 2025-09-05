@@ -1,5 +1,7 @@
 package example.lohnsoftware.core;
 
+import org.jspecify.annotations.Nullable;
+
 import java.util.Optional;
 
 public record PersonalNummer(String wert) {
@@ -8,7 +10,7 @@ public record PersonalNummer(String wert) {
         return parse(mitarbeiterNummer).orElseThrow();
     }
 
-    public static Optional<PersonalNummer> parse(String nummer) {
+    public static Optional<PersonalNummer> parse(@Nullable String nummer) {
         if (nummer == null) {
             return Optional.empty();
         }
