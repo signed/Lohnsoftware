@@ -1,7 +1,7 @@
 # https://docs.gradle.org/current/userguide/version_catalogs.html#sec:version-catalog-declaration
 [versions]
 assertj-vavr = "0.4.3"
-spring-boot = "3.5.4"
+spring-boot = "3.5.5"
 vavr = "0.10.7"
 version-catalog-update = "1.0.0"
 
