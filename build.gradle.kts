@@ -7,8 +7,8 @@ plugins {
     java
     alias(libs.plugins.spring.boot)
     alias(libs.plugins.version.catalog.update)
-    id("net.ltgt.errorprone") version "4.3.0"
-    id("net.ltgt.nullaway") version "2.3.0"
+    alias(libs.plugins.errorprone)
+    alias(libs.plugins.nullawy)
 }
 
 group = "example"
@@ -34,9 +34,9 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation(libs.assertj.vavr)
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    errorprone("com.uber.nullaway:nullaway:0.12.9")
-    errorprone("com.google.errorprone:error_prone_core:2.41.0")
-    implementation("org.jspecify:jspecify:1.0.0")
+    errorprone(libs.nullaway)
+    errorprone(libs.errorprone)
+    implementation(libs.jspecify)
 }
 
 versionCatalogUpdate {

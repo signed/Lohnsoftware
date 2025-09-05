@@ -1,14 +1,24 @@
 # https://docs.gradle.org/current/userguide/version_catalogs.html#sec:version-catalog-declaration
 [versions]
 assertj-vavr = "0.4.3"
+errorprone = "2.41.0"
+errorprone-plugin = "4.3.0"
+jspecify = "1.0.0"
+nullaway = "0.12.9"
+nullaway-plugin = "2.3.0"
 spring-boot = "3.5.5"
 vavr = "0.10.7"
 version-catalog-update = "1.0.0"
 
 [libraries]
 assertj-vavr = { module = "org.assertj:assertj-vavr", version.ref = "assertj-vavr" }
+errorprone = { module = "com.google.errorprone:error_prone_core", version.ref = "errorprone" }
+jspecify = { module = "org.jspecify:jspecify", version.ref = "jspecify" }
+nullaway = { module = "com.uber.nullaway:nullaway", version.ref = "nullaway" }
 vavr = { module = "io.vavr:vavr", version.ref = "vavr" }
 
 [plugins]
+errorprone = { id = "net.ltgt.errorprone", version.ref = "errorprone-plugin" }
+nullawy = { id = "net.ltgt.nullaway", version.ref = "nullaway-plugin" }
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
 version-catalog-update = { id = "nl.littlerobots.version-catalog-update", version.ref = "version-catalog-update" }
