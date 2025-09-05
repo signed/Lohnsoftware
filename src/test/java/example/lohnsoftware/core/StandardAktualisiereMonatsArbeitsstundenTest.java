@@ -1,7 +1,6 @@
 package example.lohnsoftware.core;
 
 import io.vavr.control.Either;
-import org.jspecify.annotations.Nullable;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.vavr.api.VavrAssertions.assertThat;
