@@ -4,7 +4,6 @@ import example.lohnsoftware.core.Uhr;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.temporal.TemporalAccessor;
 
 public class SystemUhr implements Uhr {
     @Override
