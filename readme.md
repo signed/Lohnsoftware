@@ -18,3 +18,4 @@
 
 - ./gradlew wrapper --gradle-version latest
 - ./gradlew versionCatalogUpdate
+- corepack use pnpm@latest
