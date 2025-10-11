@@ -1,10 +1,10 @@
 # https://docs.gradle.org/current/userguide/version_catalogs.html#sec:version-catalog-declaration
 [versions]
 assertj-vavr = "0.4.3"
-errorprone = "2.41.0"
+errorprone = "2.42.0"
 errorprone-plugin = "4.3.0"
 jspecify = "1.0.0"
-nullaway = "0.12.9"
+nullaway = "0.12.10"
 nullaway-plugin = "2.3.0"
 spring-boot = "3.5.6"
 vavr = "0.10.7"
