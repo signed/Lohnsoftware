@@ -6,9 +6,9 @@ errorprone-plugin = "4.3.0"
 jspecify = "1.0.0"
 nullaway = "0.12.9"
 nullaway-plugin = "2.3.0"
-spring-boot = "3.5.5"
+spring-boot = "3.5.6"
 vavr = "0.10.7"
-version-catalog-update = "1.0.0"
+version-catalog-update = "1.0.1"
 
 [libraries]
 assertj-vavr = { module = "org.assertj:assertj-vavr", version.ref = "assertj-vavr" }
