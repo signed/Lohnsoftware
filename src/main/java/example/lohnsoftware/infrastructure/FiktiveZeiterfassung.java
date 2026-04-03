@@ -1,15 +1,15 @@
 package example.lohnsoftware.infrastructure;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.MapType;
-import com.fasterxml.jackson.databind.type.TypeFactory;
 import example.lohnsoftware.core.Arbeitsstunden;
 import example.lohnsoftware.core.LocalMonth;
 import example.lohnsoftware.core.Mitarbeiter;
 import example.lohnsoftware.core.Zeiterfassung;
 import example.lohnsoftware.lang.Converter;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.json.JsonMapper;
+import tools.jackson.databind.type.MapType;
+import tools.jackson.databind.type.TypeFactory;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Optional;
@@ -29,7 +29,7 @@ public class FiktiveZeiterfassung implements Zeiterfassung {
     @Override
     public Optional<Arbeitsstunden> arbeitsstundenFür(Mitarbeiter mitarbeiter, LocalMonth month) {
         try {
-            final var mapper = new ObjectMapper();
+            final var mapper = new JsonMapper();
             TypeFactory typeFactory = mapper.getTypeFactory();
             MapType mapType = typeFactory.constructMapType(HashMap.class, String.class, StundenMinutenDTO.class);
             final var data = pfadZurZeiterfassung.toAbsolutePath().toFile();
@@ -41,7 +41,7 @@ public class FiktiveZeiterfassung implements Zeiterfassung {
             }
             final var arbeitsstunden = Arbeitsstunden.parse(erfassteArbeitsstunden.stunden, erfassteArbeitsstunden.minuten);
             return Converter.optionalFrom(arbeitsstunden);
-        } catch (IOException e) {
+        } catch (JacksonException e) {
             return Optional.empty();
         }
     }
