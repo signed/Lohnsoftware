@@ -1,10 +1,11 @@
-import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import nl.littlerobots.vcu.plugin.resolver.VersionSelectors
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
     java
     alias(libs.plugins.spring.boot)
     alias(libs.plugins.version.catalog.update)
+    alias(libs.plugins.openrewrite)
 }
 
 group = "example"
@@ -30,6 +31,8 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation(libs.assertj.vavr)
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    rewrite(platform("org.openrewrite.recipe:rewrite-recipe-bom:latest.release"))
+    rewrite("org.openrewrite.recipe:rewrite-spring")
 }
 
 versionCatalogUpdate {
@@ -59,4 +62,12 @@ tasks {
 fun jvmArgsList(): List<String> {
     val mockitoAgent = configurations.testRuntimeClasspath.get().find { it.name.contains("mockito-core") }
     return listOf("-javaagent:$mockitoAgent")
+}
+
+rewrite {
+    activeRecipe(
+//        "org.openrewrite.java.OrderImports",
+        "org.openrewrite.java.spring.boot4.UpgradeSpringBoot_4_0",
+        "org.openrewrite.java.jackson.UpgradeJackson_2_3_TypeChanges"
+    )
 }

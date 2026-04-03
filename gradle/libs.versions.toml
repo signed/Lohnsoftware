@@ -4,6 +4,7 @@ assertj-vavr = "0.4.3"
 spring-boot = "3.5.7"
 vavr = "0.10.7"
 version-catalog-update = "1.0.1"
+openrewrite = "7.29.0"
 
 [libraries]
 assertj-vavr = { module = "org.assertj:assertj-vavr", version.ref = "assertj-vavr" }
@@ -12,3 +13,4 @@ vavr = { module = "io.vavr:vavr", version.ref = "vavr" }
 [plugins]
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
 version-catalog-update = { id = "nl.littlerobots.version-catalog-update", version.ref = "version-catalog-update" }
+openrewrite = { id = "org.openrewrite.rewrite", version.ref = "openrewrite" }
