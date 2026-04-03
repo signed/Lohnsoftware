@@ -1,9 +1,9 @@
 package example.lohnsoftware.infrastructure;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import example.lohnsoftware.core.Mitarbeiter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -31,7 +31,7 @@ class JsonBelegschaftTest {
     }
 
     private void angestelltSind(String... nummern) throws IOException {
-        final var json = new ObjectMapper().writeValueAsString(nummern);
+        final var json = new JsonMapper().writeValueAsString(nummern);
         Files.writeString(pfadZurBelegschaft(), json);
     }
 

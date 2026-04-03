@@ -1,10 +1,11 @@
 package example.lohnsoftware.infrastructure;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 import example.lohnsoftware.core.Arbeitszeitkonto;
 import example.lohnsoftware.core.MonatsArbeitsstunden;
 import io.vavr.control.Either;
+import tools.jackson.core.JacksonException;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -60,7 +61,7 @@ public class JsonArbeitszeitkonto implements Arbeitszeitkonto {
 
     public JsonArbeitszeitkonto(Path basisPfad) {
         this.basisPfad = basisPfad;
-        objectMapper = new ObjectMapper();
+        objectMapper = new JsonMapper();
     }
 
     @Override
@@ -69,7 +70,7 @@ public class JsonArbeitszeitkonto implements Arbeitszeitkonto {
             final var json = erstelleJsonFür(monatsArbeitsstunden);
             var datei = pfadZurDatei(monatsArbeitsstunden);
             return lockeDateiUndSchreibe(datei, json);
-        } catch (IOException e) {
+        } catch (RuntimeException e) {
             return Fehler.fehlschlag("Informationen die der Aufrufer im Falle eines Fehlschlags braucht");
         }
     }
@@ -94,7 +95,7 @@ public class JsonArbeitszeitkonto implements Arbeitszeitkonto {
         return basisPfad.resolve(relativerPfadZumSpeicherort(monatsArbeitsstunden));
     }
 
-    private String erstelleJsonFür(MonatsArbeitsstunden monatsArbeitsstunden) throws JsonProcessingException {
+    private String erstelleJsonFür(MonatsArbeitsstunden monatsArbeitsstunden) throws JacksonException {
         final var arbeitsstunden = monatsArbeitsstunden.arbeitsstunden();
         final var stunden = arbeitsstunden.stunden().wert();
         final var minuten = arbeitsstunden.minuten().wert();
