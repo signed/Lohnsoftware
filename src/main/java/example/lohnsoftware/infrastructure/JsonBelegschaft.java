@@ -1,12 +1,13 @@
 package example.lohnsoftware.infrastructure;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 import example.lohnsoftware.core.Belegschaft;
 import example.lohnsoftware.core.LocalMonth;
 import example.lohnsoftware.core.Mitarbeiter;
+import tools.jackson.core.JacksonException;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
@@ -24,11 +25,11 @@ public class JsonBelegschaft implements Belegschaft {
     @Override
     public Set<Mitarbeiter> alleMitarbeiter() {
         try {
-            final var mapper = new ObjectMapper();
+            final var mapper = new JsonMapper();
             List<String> mitarbeiterDTOS = mapper.readValue(pfadZurBelegschaft.toFile(), new TypeReference<>() {
             });
             return mitarbeiterDTOS.stream().map(Mitarbeiter::erstelle).collect(Collectors.toSet());
-        } catch (IOException e) {
+        } catch (JacksonException e) {
             return Collections.emptySet();
         }
     }

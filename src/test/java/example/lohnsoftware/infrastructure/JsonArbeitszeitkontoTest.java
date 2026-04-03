@@ -1,6 +1,5 @@
 package example.lohnsoftware.infrastructure;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import example.lohnsoftware.core.Arbeitsstunden;
 import example.lohnsoftware.core.LocalMonth;
 import example.lohnsoftware.core.Mitarbeiter;
@@ -11,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.json.JsonContentAssert;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -28,7 +28,7 @@ class JsonArbeitszeitkontoTest {
 
     @BeforeEach
     public void setup() {
-        ObjectMapper objectMapper = new ObjectMapper();
+        JsonMapper objectMapper = new JsonMapper();
         JacksonTester.initFields(this, objectMapper);
     }
 

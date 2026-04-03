@@ -1,13 +1,13 @@
 package example.lohnsoftware.http;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
+import tools.jackson.core.JacksonException;
 
 import java.util.List;
 import java.util.Set;
@@ -22,7 +22,7 @@ class AktualisiereArbeitsstundenRequestDTOTest {
     ObjectMapper objectMapper;
 
     @Test
-    void parseStundenUndMinutenInformationen() throws JsonProcessingException {
+    void parseStundenUndMinutenInformationen() throws JacksonException {
         var json = """
                 {
                   "stunden": 40,
@@ -37,7 +37,7 @@ class AktualisiereArbeitsstundenRequestDTOTest {
     }
 
     @Test
-    void missingMinuten() throws JsonProcessingException {
+    void missingMinuten() throws JacksonException {
         var json = """
                 {
                   "stunden": 40
@@ -48,7 +48,7 @@ class AktualisiereArbeitsstundenRequestDTOTest {
     }
 
     @Test
-    void missingStunden() throws JsonProcessingException {
+    void missingStunden() throws JacksonException {
         var json = """
                 {
                   "minuten": 40
