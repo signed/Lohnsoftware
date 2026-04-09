@@ -13,3 +13,7 @@ number of naming convention for event fields, e.g. `event.outcome = success`
 # On Markers and MDC
 
 https://stackoverflow.com/a/4446475
+
+
+# [Functional style MDC](https://auto1.tech/functional-style-mdc/)
+
