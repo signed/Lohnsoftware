@@ -37,14 +37,14 @@ public class SpringSecurityKonfiguration {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        UserDetails annabelle =
+        UserDetails allice =
                 justADemoProjectUser()
                         .username("Alice")
                         .password("Alice")
                         .roles(RolleGeschäftsführer, RolleMitarbeiter)
                         .authorities(AuthorityZeiterfassung)
                         .build();
-        UserDetails ulf =
+        UserDetails bob =
                 justADemoProjectUser()
                         .username("Bob")
                         .password("Bob")
@@ -57,7 +57,7 @@ public class SpringSecurityKonfiguration {
                         .roles(RolleMitarbeiter)
                         .authorities(AuthorityZeiterfassung)
                         .build();
-        return new InMemoryUserDetailsManager(annabelle, ulf, carol);
+        return new InMemoryUserDetailsManager(allice, bob, carol);
     }
 
     @SuppressWarnings("deprecation")
