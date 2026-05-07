@@ -17,3 +17,6 @@ https://stackoverflow.com/a/4446475
 
 # [Functional style MDC](https://auto1.tech/functional-style-mdc/)
 
+# Async Tasks
+
+https://spring.io/blog/2025/11/18/opentelemetry-with-spring-boot#beware-the-context
