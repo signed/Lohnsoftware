@@ -1,6 +1,18 @@
 package reminder;
 
+import java.util.Comparator;
+
 record SemanticVersion(int major, int minor, int patch) {
+    private static final Comparator<SemanticVersion> comparator;
+
+    static {
+        var major = Comparator.comparing(SemanticVersion::major);
+        var minor = Comparator.comparing(SemanticVersion::minor);
+        var patch = Comparator.comparing(SemanticVersion::patch);
+        comparator = major.thenComparing(minor).thenComparing(patch);
+    }
+
+
     public static SemanticVersion parseFrom(String versionString) {
         var split = versionString.split("\\.");
         var major = Integer.parseInt(split[0]);
@@ -10,19 +22,6 @@ record SemanticVersion(int major, int minor, int patch) {
     }
 
     public boolean isBefore(SemanticVersion other) {
-        if(this.major > other.major) {
-            return false;
-        }
-        if(this.major < other.major) {
-            return true;
-        }
-
-        if(this.minor > other.minor) {
-            return false;
-        }
-        if(this.minor < other.minor) {
-            return true;
-        }
-        return this.patch < other.patch;
+        return comparator.compare(this, other) < 0;
     }
 }
